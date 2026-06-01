@@ -101,11 +101,7 @@ const anio = view(Inputs.select(yearsAvail, {
 ```
 
 ```js
-display(html`<button class="copylink" onclick=${(e) => {
-  navigator.clipboard?.writeText(location.href);
-  const b = e.currentTarget, t = b.textContent;
-  b.textContent = "Enlace copiado"; setTimeout(() => { b.textContent = t; }, 1500);
-}}>Copiar enlace a esta vista</button>`);
+// Botones de compartir: se renderizan más abajo, junto a los datos.
 ```
 
 ```js
@@ -138,13 +134,26 @@ display(html`<div class="vizhead">
 indicador por sexo: estás viendo <b>${(SEX_LABEL[sexo] ?? sexo).toLowerCase()}</b> — cambia el sexo arriba.</div>`);
 ```
 
+```js
+display((() => {
+  const lugar = ccaaSel ? `${ccaaName.get(ccaaSel)}: ${fmtN(vals[ccaaSel])}` : `España: ${fmtN(national)}`;
+  const texto = `${indicator.name} — ${lugar} (${SEX_LABEL[sexo] ?? sexo}, ${anio}). Tasas crudas, no es ranking. Datos abiertos:`;
+  const xurl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(texto)}&url=${encodeURIComponent(location.href)}`;
+  return html`<div class="actions">
+    <button class="copylink" onclick=${(e)=>{navigator.clipboard?.writeText(location.href);const b=e.currentTarget,t=b.textContent;b.textContent="Enlace copiado";setTimeout(()=>b.textContent=t,1500);}}>Copiar enlace</button>
+    <a class="copylink sharex" href=${xurl} target="_blank" rel="noopener">Compartir en X</a>
+  </div>`;
+})());
+```
+
 <div class="calidad-split">
 <div class="card">
 
 ```js
 function mapa(width) {
   const height = Math.round(width * 0.66);
-  const projection = geoConicConformalSpain().fitSize([width, height], ccaaFeatures);
+  const footerH = 15;
+  const projection = geoConicConformalSpain().fitSize([width, height - footerH], ccaaFeatures);
   const path = d3.geoPath(projection);
   const svg = d3.create("svg")
     .attr("viewBox", [0, 0, width, height]).attr("width", width)
@@ -178,6 +187,8 @@ function mapa(width) {
 
   svg.append("path").attr("d", projection.getCompositionBorders())
       .attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
+  svg.append("text").attr("x", 1).attr("y", height - 3).attr("font-size", 9).attr("fill", "#7a8a96")
+     .text("Tasas crudas · no ajustadas por riesgo · no es un ranking · Fuente: M. Sanidad/INCLASNS · MapaSalud");
   return svg.node();
 }
 
@@ -277,5 +288,9 @@ validada de la calidad de un profesional. Metodología y fuentes:
 .filtros > h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--theme-foreground-muted); margin:0 0 .4rem; }
 .copylink { font-family:var(--mono); font-size:.74rem; background:none; border:1px solid var(--line); color:var(--ms); padding:.3rem .7rem; border-radius:6px; cursor:pointer; margin:.2rem 0 .7rem; }
 .copylink:hover { background:var(--ms-soft); }
+.actions { display:flex; gap:.5rem; flex-wrap:wrap; margin:.1rem 0 .8rem; }
+a.copylink { text-decoration:none; display:inline-block; }
+.sharex { background:var(--ms); color:#fff; border-color:var(--ms); }
+.sharex:hover { background:var(--ms-dark); }
 .rowsel td { background:#d8ebe9 !important; font-weight:600; }
 </style>
