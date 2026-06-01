@@ -76,6 +76,19 @@ Atribución requerida: **"Origen de los datos: Ministerio de Sanidad."** Detalle
 [`DATA-LICENSES.md`](https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md) ·
 código y *pipeline*: [github.com/acuestamd/mapasalud-es](https://github.com/acuestamd/mapasalud-es).
 
+## Cómo citar
+
+Si reutilizas estos datos o sus gráficos, cítalo así (y mantén la atribución a la fuente oficial):
+
+> Cuesta, A. (2026). *MapaSalud — Hospitales de España* [conjunto de datos y sitio web].
+> https://mapasalud-es.vercel.app · Origen de los datos: Ministerio de Sanidad.
+
+El repositorio incluye un fichero [`CITATION.cff`](https://github.com/acuestamd/mapasalud-es/blob/main/CITATION.cff),
+así que GitHub muestra el botón **«Cite this repository»** con los formatos APA y BibTeX listos para copiar.
+Para prensa y uso académico, abre una *issue* en
+[GitHub](https://github.com/acuestamd/mapasalud-es/issues) o escribe por X a
+[@acuestaMD](https://x.com/acuestaMD).
+
 <div class="note">
 
 Los CSV se generan **en tu navegador** a partir de los mismos datos que pinta el sitio. Las

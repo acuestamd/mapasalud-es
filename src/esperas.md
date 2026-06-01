@@ -68,7 +68,7 @@ const fmtU = v => v == null ? "—" : fmtN(v) + unit;
 ```js
 display((() => {
   const lugar = ccaaSel ? `${ccaaName.get(ccaaSel)}: ${fmtU(vals[ccaaSel])}` : `España: ${fmtU(national)}`;
-  const texto = `${indicator.name} — ${lugar}. Fuente: SISLE-SNS. Datos abiertos:`;
+  const texto = `${indicator.name} — ${lugar}. Fuente: SISLE-SNS. Datos abiertos — vía @acuestaMD:`;
   const xurl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(texto)}&url=${encodeURIComponent(location.href)}`;
   return html`<div class="actions">
     <button class="copylink" onclick=${(e)=>{navigator.clipboard?.writeText(location.href);const b=e.currentTarget,t=b.textContent;b.textContent="Enlace copiado";setTimeout(()=>b.textContent=t,1500);}}>Copiar enlace</button>

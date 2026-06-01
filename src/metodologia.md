@@ -27,11 +27,15 @@ Las clasificaciones cerradas miden sobre todo **reputación**; aquí publicamos 
 **resultado**, abiertos y trazables a su fuente. Son ejes distintos: no es "mejor o peor".
 
 ## Quién y por qué
-Lo mantengo yo, **Armando Cuesta, médico**. La sanidad pública española publica datos
+Lo mantengo yo, **Armando Cuesta, médico** ([@acuestaMD](https://x.com/acuestaMD) ·
+[GitHub](https://github.com/acuestamd)). La sanidad pública española publica datos
 de calidad valiosos pero dispersos y poco legibles; no existe un equivalente abierto,
 objetivo y trazable a las clasificaciones cerradas o de reputación. Este proyecto los
 pone en un mapa, con su origen siempre a la vista, para informar —no para sustituir— el
-criterio clínico.
+criterio clínico. **Sin financiación externa, sin patrocinio y sin relación comercial**
+con ningún centro, aseguradora ni administración: ese es justo el sesgo que un ranking
+de pago no puede evitar y este proyecto sí. ¿Una errata, un dato mal cruzado, una fuente
+mejor? Abre una [*issue*](https://github.com/acuestamd/mapasalud-es/issues) — se corrige a la vista de todos.
 
 ## Qué datos uso y cómo
 - **Localización de hospitales** — OpenStreetMap (ODbL). Da el "dónde"; no es una medida

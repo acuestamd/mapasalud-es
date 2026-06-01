@@ -138,7 +138,7 @@ indicador por sexo: estás viendo <b>${(SEX_LABEL[sexo] ?? sexo).toLowerCase()}<
 ```js
 display((() => {
   const lugar = ccaaSel ? `${ccaaName.get(ccaaSel)}: ${fmtN(vals[ccaaSel])}` : `España: ${fmtN(national)}`;
-  const texto = `${indicator.name} — ${lugar} (${SEX_LABEL[sexo] ?? sexo}, ${anio}). Tasas crudas, no es ranking. Datos abiertos:`;
+  const texto = `${indicator.name} — ${lugar} (${SEX_LABEL[sexo] ?? sexo}, ${anio}). Tasas crudas, no es ranking. Datos abiertos — vía @acuestaMD:`;
   const xurl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(texto)}&url=${encodeURIComponent(location.href)}`;
   return html`<div class="actions">
     <button class="copylink" onclick=${(e)=>{navigator.clipboard?.writeText(location.href);const b=e.currentTarget,t=b.textContent;b.textContent="Enlace copiado";setTimeout(()=>b.textContent=t,1500);}}>Copiar enlace</button>

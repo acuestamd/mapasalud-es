@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "MapaSalud — Hospitales de España"
+message: "Si usas estos datos o el sitio, cítalo así. Mantén también la atribución a la fuente oficial: «Origen de los datos: Ministerio de Sanidad»."
+type: dataset
+authors:
+  - family-names: Cuesta
+    given-names: Armando
+    orcid: ""
+url: "https://mapasalud-es.vercel.app"
+repository-code: "https://github.com/acuestamd/mapasalud-es"
+abstract: >-
+  Mapa abierto y citado de los hospitales de España: indicadores de calidad por
+  comunidad autónoma (INCLASNS / CMBD), listas de espera quirúrgica (SISLE-SNS),
+  buscador de hospitales y verificación de colegiación. Proyecto independiente y
+  sin ánimo de lucro. El código se publica bajo licencia MIT; los datos conservan
+  las licencias de sus fuentes (ver DATA-LICENSES.md).
+keywords:
+  - hospitales
+  - calidad asistencial
+  - INCLASNS
+  - CMBD
+  - listas de espera
+  - SISLE
+  - sanidad
+  - España
+  - datos abiertos
+license: MIT
+date-released: 2026-06-01
