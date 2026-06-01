@@ -56,6 +56,8 @@ body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:a
 #observablehq-main h1, #observablehq-main h2, #observablehq-main h3 { font-family:var(--sans-serif); letter-spacing:-.015em; color:var(--ink); }
 #observablehq-main h1 { font-weight:700; font-size:2.4rem; line-height:1.08; }
 #observablehq-sidebar a[aria-current="page"], .observablehq-link-active > a { color:var(--ms) !important; font-weight:700; }
+/* el header solo alberga el aviso <noscript>; con JS queda vacío y no debe dejar hueco */
+#observablehq-header { margin:0; padding:0; border:none; }
 
 /* etiqueta superior (kicker) en monoespaciada — sello editorial */
 .eyebrow { font-family:var(--mono); font-weight:500; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ms); display:block; margin-bottom:.5rem; }
@@ -138,6 +140,7 @@ td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:
     <a href="/metodologia">Metodología</a> · <a href="/privacidad">Privacidad</a> ·
     <a href="/aviso-legal">Aviso legal</a> ·
     <a href="https://github.com/acuestamd/mapasalud-es">Código y datos (MIT)</a>`,
+  header: `<noscript><div style="border:1px solid var(--line);border-left:3px solid var(--ms);padding:.6rem .9rem;margin:.2rem 0 1rem;font-size:.92rem;color:var(--muted)">Los mapas y tablas de MapaSalud se dibujan con JavaScript. Si lo tienes desactivado, puedes ver y <b>descargar todos los datos en CSV</b> desde <a href="/datos">Datos abiertos</a>, con su fuente citada. <b>No es consejo médico.</b></div></noscript>`,
   pager: false,
   toc: false,
   theme: "light",
