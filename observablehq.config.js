@@ -3,7 +3,7 @@ const DESC =
   "El mapa abierto de los hospitales de España: indicadores de calidad por comunidad " +
   "con su fuente (INCLASNS/CMBD), buscador de hospitales y verificación de colegiación. " +
   "Datos abiertos, sin ánimo de lucro.";
-const OG = "https://acuestamd.github.io/mapasalud-es/og.png";
+const OG = "https://mapasalud-es.vercel.app/og.png";
 
 export default {
   title: "MapaSalud",
@@ -21,7 +21,8 @@ export default {
 <meta property="og:title" content="MapaSalud — Hospitales de España">
 <meta property="og:description" content="${DESC}">
 <meta property="og:image" content="${OG}">
-<meta property="og:url" content="https://acuestamd.github.io/mapasalud-es/">
+<meta property="og:url" content="https://mapasalud-es.vercel.app/">
+<link rel="canonical" href="https://mapasalud-es.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MapaSalud — Hospitales de España">
 <meta name="twitter:description" content="${DESC}">
