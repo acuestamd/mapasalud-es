@@ -1,6 +1,10 @@
 // MapaSalud — Observable Framework config
 export default {
   title: "MapaSalud",
+  pages: [
+    {name: "Hospitales", path: "/index"},
+    {name: "Verificar un médico", path: "/verificacion"},
+  ],
   // Boundaries-only, key-free basemap; no external tile provider.
   head: '<meta name="color-scheme" content="light dark">',
   footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © Instituto Geográfico Nacional (CC-BY 4.0). ·
