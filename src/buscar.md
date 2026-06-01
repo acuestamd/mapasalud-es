@@ -130,11 +130,13 @@ function ficha(h) {
       ${h.titularidad !== "—" ? html`· <span class="pill">${h.titularidad}</span>` : ""}
       ${h.urgencias === "Sí" ? html`· <span class="pill">Urgencias</span>` : ""}
       ${h.web ? html`· <a href="${h.web}" target="_blank" rel="noopener">web ↗</a>` : ""}</div>
-    <p class="muted" style="margin:.5rem 0">Indicadores de <b>${h.comunidad}</b> — regionales y
-      <b>tasas crudas (mujeres)</b>, no de este hospital. Los datos por hospital están en trámite
-      (solicitud CMBD).</p>
+    <p class="muted" style="margin:.5rem 0"><b>Contexto de calidad de ${h.comunidad}</b> — cifras
+      <b>regionales</b> (tasas crudas, mujeres), compartidas por todos los hospitales de la comunidad,
+      <b>no de este centro</b>. El detalle por hospital está en trámite (microdatos CMBD).</p>
     ${h.ccaaCode ? fichaRegional(h.ccaaCode) : html`<div class="muted">Comunidad no determinada para este punto.</div>`}
-    <div class="meta" style="margin-top:.6rem">¿Es real el médico que te atiende? <a href="./verificacion">Verifica su colegiación →</a></div>
+    ${h.ccaaCode ? html`<div class="meta" style="margin-top:.6rem">Ver de ${h.comunidad}:
+      <a href="./calidad?ccaa=${h.ccaaCode}">calidad</a> · <a href="./esperas?ccaa=${h.ccaaCode}">listas de espera</a></div>` : ""}
+    <div class="meta" style="margin-top:.4rem">¿Es real el médico que te atiende? <a href="./verificacion">Verifica su colegiación →</a></div>
   </div>`;
 }
 
