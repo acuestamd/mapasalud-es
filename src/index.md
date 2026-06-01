@@ -4,11 +4,27 @@ toc: false
 ---
 
 <div class="hero-band">
-  <span class="badge">MapaSalud · datos abiertos de sanidad</span>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="#0c5c63"/>
+      <rect x="5" y="5" width="7" height="7" rx="1.6" fill="#9ad6d4"/><rect x="13.5" y="5" width="7" height="7" rx="1.6" fill="#e7f4f3"/><rect x="22" y="5" width="7" height="7" rx="1.6" fill="#e8a23d"/>
+      <rect x="5" y="13.5" width="7" height="7" rx="1.6" fill="#cdeae8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6" fill="#fff"/><rect x="22" y="13.5" width="7" height="7" rx="1.6" fill="#5fb8b4"/>
+      <rect x="5" y="22" width="7" height="7" rx="1.6" fill="#2f9a96"/><rect x="13.5" y="22" width="7" height="7" rx="1.6" fill="#86cdc9"/><rect x="22" y="22" width="7" height="7" rx="1.6" fill="#bce5e2"/>
+    </svg>
+    <span class="brand-name">MapaSalud</span>
+    <span class="brand-tag">datos abiertos de sanidad</span>
+  </div>
   <h1>Los hospitales de España, con su fuente.</h1>
   <p>Indicadores de calidad por comunidad (INCLASNS / CMBD), listas de espera quirúrgica,
   buscador de hospitales y verificación de colegiación. Abierto, citado y sin ánimo de lucro.</p>
 </div>
+
+<style>
+.brand { display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; }
+.brand-mark { width:30px; height:30px; flex:none; }
+.brand-name { font-weight:700; font-size:1.18rem; letter-spacing:-.01em; }
+.brand-tag { font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); border-left:1px solid var(--line); padding-left:.6rem; }
+</style>
 
 ```js
 import * as topojson from "npm:topojson-client";
@@ -61,7 +77,7 @@ function spainMap(width) {
       .attr("d", path).attr("fill", "var(--theme-foreground-faintest, #eef2f4)").attr("stroke", "none");
   svg.append("path").datum(borders).attr("d", path).attr("fill", "none").attr("stroke", "#c4ccd2").attr("stroke-width", 0.6);
   svg.append("path").attr("d", projection.getCompositionBorders()).attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
-  svg.append("g").attr("fill", "#0b6fb8").attr("fill-opacity", 0.8).attr("stroke", "#fff").attr("stroke-width", 0.35)
+  svg.append("g").attr("fill", "#0c6b73").attr("fill-opacity", 0.82).attr("stroke", "#fff").attr("stroke-width", 0.35)
     .selectAll("circle").data(hospitals.features.filter(d => projection(d.geometry.coordinates))).join("circle")
       .attr("transform", d => `translate(${projection(d.geometry.coordinates)})`).attr("r", 2.6)
     .append("title").text(d => `${d.properties.name}${d.properties.city ? " — " + d.properties.city : ""}`);

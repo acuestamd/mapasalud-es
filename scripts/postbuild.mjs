@@ -7,7 +7,7 @@ import path from "node:path";
 const DIST = "dist";
 const SRC = "src";
 
-for (const f of ["og.png", "robots.txt", "sitemap.xml"]) {
+for (const f of ["og.png", "robots.txt", "sitemap.xml", "favicon.svg"]) {
   const s = path.join(SRC, f);
   if (fs.existsSync(s)) fs.copyFileSync(s, path.join(DIST, f));
 }

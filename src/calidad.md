@@ -247,7 +247,7 @@ validada de la calidad de un profesional. Metodología y fuentes:
 .vizhead { font-size: 1.05rem; margin: .2rem 0 .15rem; }
 .vizsub { font-size: .85rem; margin-bottom: .7rem; }
 .chip { display:inline-block; background: var(--theme-foreground-faintest); border-radius: 999px; padding: 1px 9px; font-size: .8rem; font-weight: 600; margin-left: .35rem; }
-.chip-sex { background:#0b6fb8; color:#fff; }
+.chip-sex { background:var(--ms); color:#fff; }
 .lown { background:#fdecea; color:#b3261e; border-radius:999px; padding:0 7px; font-size:.72rem; font-weight:600; white-space:nowrap; }
 .calidad-split { display:grid; gap:1rem; grid-template-columns:1fr; align-items:start; }
 @media (min-width:680px){ .calidad-split { grid-template-columns:1.5fr 1fr; } }

@@ -18,7 +18,7 @@ export default {
   ],
   head: `
 <meta name="description" content="${DESC}">
-<meta name="theme-color" content="#0b6fb8">
+<meta name="theme-color" content="#0c6b73">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MapaSalud — Hospitales de España">
 <meta property="og:description" content="${DESC}">
@@ -29,7 +29,7 @@ export default {
 <meta name="twitter:title" content="MapaSalud — Hospitales de España">
 <meta name="twitter:description" content="${DESC}">
 <meta name="twitter:image" content="${OG}">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b6fb8'/%3E%3Cpath d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7z' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
 @font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-600.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
@@ -37,7 +37,7 @@ export default {
 @font-face{font-family:"Plex Mono";src:url(/fonts/plex-mono-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 
 :root {
-  --theme-foreground-focus:#0e6ba8; --ms:#0e6ba8; --ms-dark:#0a5183; --ms-soft:#eaf2f8;
+  --theme-foreground-focus:#0c6b73; --ms:#0c6b73; --ms-dark:#084f55; --ms-soft:#e4f0ef;
   --ink:#16222e; --muted:#5a6b78; --line:#e4e7ea;
   --sans-serif:"Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --serif:var(--sans-serif);
