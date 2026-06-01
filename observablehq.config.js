@@ -4,6 +4,12 @@ const DESC =
   "con su fuente (INCLASNS/CMBD), buscador de hospitales y verificación de colegiación. " +
   "Datos abiertos, sin ánimo de lucro.";
 const OG = "https://mapasalud-es.vercel.app/og.png";
+const CCAA_NAMES = {
+  "01": "Andalucía", "02": "Aragón", "03": "Asturias", "04": "Illes Balears", "05": "Canarias",
+  "06": "Cantabria", "07": "Castilla y León", "08": "Castilla-La Mancha", "09": "Cataluña",
+  "10": "Comunitat Valenciana", "11": "Extremadura", "12": "Galicia", "13": "Madrid",
+  "14": "Murcia", "15": "Navarra", "16": "País Vasco", "17": "La Rioja", "18": "Ceuta", "19": "Melilla",
+};
 
 export default {
   root: "src",
@@ -22,20 +28,30 @@ export default {
   // Por eso ninguna página usa `head` en su front-matter; aquí construimos el head completo
   // y añadimos canonical + og:url propios de cada página (self-canonical en todas).
   head: ({path}) => {
-    const u = "https://mapasalud-es.vercel.app" + (path === "/index" ? "/" : path);
+    const SITE = "https://mapasalud-es.vercel.app";
+    const u = SITE + (path === "/index" ? "/" : path);
+    const m = /^\/esperas\/(\d{2})$/.exec(path);
+    const esp = m && CCAA_NAMES[m[1]];
+    const ogImage = esp ? `${SITE}/sharecards/esperas-${m[1]}.png` : OG;
+    const ogTitle = esp ? `${esp} — Listas de espera quirúrgica · MapaSalud` : "MapaSalud — Hospitales de España";
+    const ogDesc = esp
+      ? `Tiempo medio de espera para cirugía no urgente en ${esp} según el SISLE-SNS (Ministerio de Sanidad), con su fuente. MapaSalud, datos abiertos.`
+      : DESC;
     return `
-<meta name="description" content="${DESC}">
+<meta name="description" content="${ogDesc}">
 <link rel="canonical" href="${u}">
 <meta property="og:url" content="${u}">
 <meta name="theme-color" content="#0c6b73">
 <meta property="og:type" content="website">
-<meta property="og:title" content="MapaSalud — Hospitales de España">
-<meta property="og:description" content="${DESC}">
-<meta property="og:image" content="${OG}">
+<meta property="og:title" content="${ogTitle}">
+<meta property="og:description" content="${ogDesc}">
+<meta property="og:image" content="${ogImage}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MapaSalud — Hospitales de España">
-<meta name="twitter:description" content="${DESC}">
-<meta name="twitter:image" content="${OG}">
+<meta name="twitter:title" content="${ogTitle}">
+<meta name="twitter:description" content="${ogDesc}">
+<meta name="twitter:image" content="${ogImage}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
 @font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}

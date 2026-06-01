@@ -14,10 +14,11 @@ for (const f of ["og.png", "robots.txt", "favicon.svg"]) {
   const s = path.join(SRC, f);
   if (fs.existsSync(s)) fs.copyFileSync(s, path.join(DIST, f));
 }
-const fontsSrc = path.join(SRC, "fonts");
-if (fs.existsSync(fontsSrc)) {
-  fs.mkdirSync(path.join(DIST, "fonts"), { recursive: true });
-  for (const f of fs.readdirSync(fontsSrc)) fs.copyFileSync(path.join(fontsSrc, f), path.join(DIST, "fonts", f));
+for (const sub of ["fonts", "sharecards"]) {
+  const s = path.join(SRC, sub);
+  if (!fs.existsSync(s)) continue;
+  fs.mkdirSync(path.join(DIST, sub), { recursive: true });
+  for (const f of fs.readdirSync(s)) fs.copyFileSync(path.join(s, f), path.join(DIST, sub, f));
 }
 
 let patched = 0;
