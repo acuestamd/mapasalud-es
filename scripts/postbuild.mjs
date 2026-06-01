@@ -23,6 +23,8 @@ function walk(dir) {
       h = h.replace(/<html(?![^>]*\blang=)/i, '<html lang="es"');
       h = h.replace(/(<meta name="viewport"[^>]*content=")([^"]*)(")/i, (_m, a, c, z) =>
         a + c.replace(/\s*,?\s*maximum-scale=[^,"]*/i, "").replace(/\s*,?\s*user-scalable=[^,"]*/i, "") + z);
+      // Privacidad: quita las fuentes de Google (cero terceros; se usa la fuente del sistema)
+      h = h.replace(/<link[^>]*(?:fonts\.googleapis\.com|fonts\.gstatic\.com)[^>]*>\s*/gi, "");
       if (h !== before) { fs.writeFileSync(p, h); patched++; }
     }
   }

@@ -71,9 +71,11 @@ body { -webkit-font-smoothing:antialiased; }
 .src { max-width:54rem; font-size:.85rem; color:var(--theme-foreground-muted); margin-top:.5rem; }
 td.good { color:#137333; font-weight:600; } td.bad { color:#b3261e; font-weight:600; }
 </style>`,
-  footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © Instituto Geográfico Nacional (CC-BY 4.0) ·
-    Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011). ·
-    Información para orientar tus preguntas al médico, no un veredicto. No es consejo médico. ·
+  footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © IGN (CC-BY 4.0) ·
+    Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011) · último dato 2024. ·
+    Información para orientar tus preguntas al médico, no un veredicto. No es consejo médico.<br>
+    <a href="/metodologia">Metodología</a> · <a href="/privacidad">Privacidad</a> ·
+    <a href="/aviso-legal">Aviso legal</a> ·
     <a href="https://github.com/acuestamd/mapasalud-es">Código y datos (MIT)</a>`,
   pager: false,
   toc: false,
