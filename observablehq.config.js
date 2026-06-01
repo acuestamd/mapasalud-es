@@ -11,6 +11,7 @@ export default {
     {name: "Hospitales", path: "/index"},
     {name: "Buscar hospital", path: "/buscar"},
     {name: "Calidad por región", path: "/calidad"},
+    {name: "Listas de espera", path: "/esperas"},
     {name: "Verificar un médico", path: "/verificacion"},
     {name: "Referencias", path: "/referencias"},
   ],

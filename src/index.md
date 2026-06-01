@@ -28,6 +28,9 @@ const total = hospitals.features.length;
   <a class="feature" href="./calidad"><div class="ic">📊</div><h3>Calidad por región</h3>
     <p>Mortalidad, seguridad y procesos por comunidad y por área clínica, con su fuente.</p>
     <span class="go">Ver indicadores →</span></a>
+  <a class="feature" href="./esperas"><div class="ic">⏳</div><h3>Listas de espera</h3>
+    <p>Tiempos de espera quirúrgica por comunidad (SISLE) — lo que de verdad notas.</p>
+    <span class="go">Ver esperas →</span></a>
   <a class="feature" href="./verificacion"><div class="ic">🩺</div><h3>Verificar un médico</h3>
     <p>Comprueba la colegiación oficial de un facultativo. No es un ranking.</p>
     <span class="go">Verificar →</span></a>

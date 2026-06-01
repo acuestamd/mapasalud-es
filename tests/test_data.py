@@ -40,6 +40,17 @@ def test_hospitals_ccaa_assigned():
     assert not sin_ccaa, f"{len(sin_ccaa)} hospitales sin CCAA asignada"
 
 
+def test_sisle_schema():
+    d = load("src/data/sisle.json")
+    assert d.get("version"), "falta version SISLE"
+    inds = {i["id"]: i for i in d["indicators"]}
+    assert "espera_dias" in inds
+    esp = inds["espera_dias"]["values"]
+    ccaa = {c for c in esp if c != "ES"}
+    assert len(ccaa) >= 18 and "ES" in esp, f"SISLE: {len(ccaa)} CCAA"
+    assert 30 <= esp["ES"] <= 400, esp["ES"]
+
+
 def test_hospital_names_clean():
     d = load("src/data/hospitals.geojson")
     bad = [f["properties"]["name"] for f in d["features"]

@@ -25,14 +25,16 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - name: Fetch + normalize + assign CCAA + indicators
+      - run: pip install pdfplumber pytest
+      - name: Fetch + normalize + assign CCAA + indicators + esperas
         run: |
           python3 scripts/fetch_osm_hospitals.py
           python3 scripts/normalize_osm_hospitals.py
           node scripts/assign_ccaa.mjs
           python3 scripts/fetch_inclasns.py
+          python3 scripts/fetch_sisle.py
       - name: Validate data schema
-        run: pip install pytest && python -m pytest -q
+        run: python -m pytest -q
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain data-raw src/data)" ]; then
