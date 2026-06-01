@@ -3,7 +3,9 @@ title: Referencias externas
 toc: false
 ---
 
-# 🔗 Referencias y validación externa
+<span class="eyebrow">Referencias</span>
+
+# Referencias y validación externa
 
 <div class="hero">
 

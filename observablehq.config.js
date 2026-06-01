@@ -6,6 +6,7 @@ const DESC =
 const OG = "https://mapasalud-es.vercel.app/og.png";
 
 export default {
+  root: "src",
   title: "MapaSalud",
   pages: [
     {name: "Hospitales", path: "/index"},
@@ -30,47 +31,75 @@ export default {
 <meta name="twitter:image" content="${OG}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b6fb8'/%3E%3Cpath d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7z' fill='white'/%3E%3C/svg%3E">
 <style>
-:root { --theme-foreground-focus:#0b6fb8; --ms:#0b6fb8; --ms-dark:#095a96; }
-body { -webkit-font-smoothing:antialiased; }
-#observablehq-header, #observablehq-main h1 { letter-spacing:-.4px; }
-.hero { font-size:1.06rem; max-width:54rem; color:var(--theme-foreground-muted); }
-.hero b { color:var(--theme-foreground); }
-.muted { color:var(--theme-foreground-muted); }
+@font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-400.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-600.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Plex Sans";src:url(/fonts/plex-sans-700.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Plex Mono";src:url(/fonts/plex-mono-500.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 
-/* hero band */
-.hero-band { background:linear-gradient(135deg,#0b3d63,#0b6fb8 60%,#1597c9); color:#fff;
-  border-radius:16px; padding:1.8rem 2rem; margin:.4rem 0 1.4rem; }
-.hero-band h1 { color:#fff; font-size:2rem; margin:.1rem 0 .4rem; border:none; }
-.hero-band p { font-size:1.08rem; max-width:46rem; margin:0; opacity:.97; line-height:1.4; }
-.hero-band .badge { display:inline-block; background:rgba(255,255,255,.18); padding:4px 12px;
-  border-radius:999px; font-size:.78rem; font-weight:600; }
+:root {
+  --theme-foreground-focus:#0e6ba8; --ms:#0e6ba8; --ms-dark:#0a5183; --ms-soft:#eaf2f8;
+  --ink:#16222e; --muted:#5a6b78; --line:#e4e7ea;
+  --sans-serif:"Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif:var(--sans-serif);
+  --mono:"Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+html, body { background:#fcfcfb; }
+body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+#observablehq-main { font-family:var(--sans-serif); line-height:1.6; color:var(--ink); }
+#observablehq-main h1, #observablehq-main h2, #observablehq-main h3 { font-family:var(--sans-serif); letter-spacing:-.015em; color:var(--ink); }
+#observablehq-main h1 { font-weight:700; font-size:2.4rem; line-height:1.08; }
+#observablehq-sidebar a[aria-current="page"], .observablehq-link-active > a { color:var(--ms) !important; font-weight:700; }
 
-/* feature cards */
-.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin:1.25rem 0; }
-.feature { display:block; padding:1.05rem 1.15rem; border:1px solid var(--theme-foreground-faint);
-  border-radius:14px; text-decoration:none; color:inherit; transition:transform .15s,box-shadow .15s,border-color .15s; }
-.feature:hover { border-color:var(--ms); transform:translateY(-2px); box-shadow:0 6px 22px rgba(11,111,184,.13); }
-.feature .ic { font-size:1.7rem; line-height:1; }
-.feature h3 { margin:.5rem 0 .25rem; font-size:1.05rem; }
-.feature p { margin:0 0 .5rem; font-size:.88rem; color:var(--theme-foreground-muted); }
-.feature .go { color:var(--ms); font-weight:600; font-size:.88rem; }
+/* etiqueta superior (kicker) en monoespaciada — sello editorial */
+.eyebrow { font-family:var(--mono); font-weight:500; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ms); display:block; margin-bottom:.5rem; }
+.hero { font-size:1.08rem; max-width:50rem; color:var(--muted); line-height:1.55; }
+.hero b { color:var(--ink); }
+.muted { color:var(--muted); }
 
-/* stat + content cards */
-.big { font-size:2.1rem; font-weight:800; line-height:1; display:block; color:var(--ms); }
+/* tarjetas: plano, línea fina, sin sombra */
+.card { border:1px solid var(--line); border-radius:10px; box-shadow:none; background:#fff; }
 .card h2 { margin-top:0; }
 
-/* buttons & pills */
-.btn { display:inline-block; padding:.5rem .9rem; background:var(--ms); color:#fff !important;
-  border-radius:9px; text-decoration:none; font-weight:600; }
-.btn:hover { background:var(--ms-dark); }
-.feature:focus-visible, .btn:focus-visible, a:focus-visible { outline:2px solid var(--ms); outline-offset:2px; border-radius:4px; }
-.pill { background:var(--theme-foreground-faintest); padding:1px 9px; border-radius:999px; font-size:.85em; }
+/* masthead (home) — plano y editorial, sin degradado ni emoji */
+.hero-band { background:none; color:inherit; border:none; border-bottom:1px solid var(--line); border-radius:0; padding:.3rem 0 1.2rem; margin:0 0 1.5rem; }
+.hero-band h1 { color:var(--ink); font-size:2.8rem; line-height:1.04; margin:.1rem 0 .6rem; border:none; font-weight:700; max-width:20ch; }
+.hero-band p { font-size:1.14rem; max-width:42rem; margin:0; color:var(--muted); line-height:1.5; }
+.hero-band .badge { font-family:var(--mono); background:none; padding:0; color:var(--ms); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; font-weight:500; }
 
-/* notes & source */
-.note { max-width:54rem; border-left:3px solid var(--ms); padding:.6rem 0 .6rem 1rem; margin-top:1.4rem;
-  font-size:.92rem; background:var(--theme-foreground-faintest); border-radius:0 8px 8px 0; }
-.src { max-width:54rem; font-size:.85rem; color:var(--theme-foreground-muted); margin-top:.5rem; }
-td.good { color:#137333; font-weight:600; } td.bad { color:#b3261e; font-weight:600; }
+/* índice de secciones — sustituye las tarjetas con emoji por una lista editorial */
+.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 1.6rem; margin:1.5rem 0; border-top:1px solid var(--ink); }
+.feature { display:flex; flex-direction:column; padding:1.05rem 0 1.1rem; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:opacity .15s; }
+.feature:hover { opacity:.62; }
+.feature .ic { font-family:var(--mono); font-size:.78rem; color:var(--ms); letter-spacing:.08em; margin-bottom:.5rem; }
+.feature h3 { margin:0 0 .3rem; font-size:1.1rem; font-weight:700; }
+.feature p { margin:0 0 .55rem; font-size:.9rem; color:var(--muted); flex:1; }
+.feature .go { color:var(--ms); font-weight:600; font-size:.84rem; }
+
+/* cifras grandes en monoespaciada */
+.statrow { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:1.5rem 0; }
+.statrow > div { padding:.9rem 1.1rem .9rem 0; border-right:1px solid var(--line); }
+.statrow > div:last-child { border-right:none; }
+.big { font-family:var(--mono); font-size:1.9rem; font-weight:500; line-height:1; display:block; color:var(--ink); font-variant-numeric:tabular-nums; }
+.statrow h2 { font-family:var(--mono); font-size:.68rem; font-weight:500; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 .5rem; }
+
+/* botones y etiquetas */
+.btn { display:inline-block; padding:.5rem .9rem; background:var(--ms); color:#fff !important; border-radius:7px; text-decoration:none; font-weight:600; }
+.btn:hover { background:var(--ms-dark); }
+.feature:focus-visible, .btn:focus-visible, a:focus-visible { outline:2px solid var(--ms); outline-offset:2px; border-radius:5px; }
+.pill { font-family:var(--mono); background:var(--ms-soft); color:var(--ms-dark); padding:1px 7px; border-radius:4px; font-size:.74em; font-weight:500; }
+
+/* tablas construidas a mano dentro de .card — estilo editorial */
+.card table { font-variant-numeric:tabular-nums; width:100%; }
+.card table thead th { font-family:var(--mono); color:var(--muted); font-weight:500; font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--ink); padding-bottom:.35rem; }
+.card table tbody tr { border-bottom:1px solid var(--line); }
+.card table tbody tr:hover { background:var(--ms-soft); }
+.card table td, .card table th { padding:.32rem .45rem; }
+
+/* notas y fuente */
+.note { max-width:52rem; border-left:2px solid var(--ms); padding:.1rem 0 .1rem 1rem; margin-top:1.6rem; font-size:.92rem; background:none; line-height:1.6; color:var(--muted); }
+.note b { color:var(--ink); }
+.src { font-family:var(--mono); max-width:52rem; font-size:.74rem; color:var(--muted); margin-top:.5rem; letter-spacing:.01em; }
+td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:600; }
 </style>
 <script type="application/ld+json">${JSON.stringify({
   "@context": "https://schema.org",

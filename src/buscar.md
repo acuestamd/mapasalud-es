@@ -3,7 +3,9 @@ title: Buscar hospital
 toc: false
 ---
 
-# 🔎 Buscar hospital
+<span class="eyebrow">Directorio</span>
+
+# Buscar hospital
 
 <div class="hero">
 

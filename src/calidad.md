@@ -3,7 +3,9 @@ title: Calidad por comunidad autónoma
 toc: false
 ---
 
-# 📊 Calidad hospitalaria por comunidad autónoma
+<span class="eyebrow">Calidad · INCLASNS / CMBD</span>
+
+# Calidad hospitalaria por comunidad autónoma
 
 <div class="hero">
 

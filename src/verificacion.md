@@ -3,7 +3,9 @@ title: Verificar un médico
 toc: false
 ---
 
-# 🩺 Verificar un médico
+<span class="eyebrow">Verificación de credenciales</span>
+
+# Verificar un médico
 
 <div class="hero">
 

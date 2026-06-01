@@ -3,7 +3,7 @@ title: Aviso legal
 toc: false
 ---
 
-# ⚖️ Aviso legal
+# Aviso legal
 
 <div class="hero">
 

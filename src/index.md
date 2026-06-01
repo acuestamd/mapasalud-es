@@ -4,10 +4,10 @@ toc: false
 ---
 
 <div class="hero-band">
-  <span class="badge">Datos abiertos · sin ánimo de lucro</span>
-  <h1>🏥 MapaSalud</h1>
-  <p>El mapa abierto de los hospitales de España: calidad <b>con su fuente</b>, no opiniones.
-  Indicadores por comunidad (INCLASNS / CMBD), buscador de hospitales y verificación de colegiación.</p>
+  <span class="badge">MapaSalud · datos abiertos de sanidad</span>
+  <h1>Los hospitales de España, con su fuente.</h1>
+  <p>Indicadores de calidad por comunidad (INCLASNS / CMBD), listas de espera quirúrgica,
+  buscador de hospitales y verificación de colegiación. Abierto, citado y sin ánimo de lucro.</p>
 </div>
 
 ```js
@@ -22,25 +22,25 @@ const total = hospitals.features.length;
 ```
 
 <div class="features">
-  <a class="feature" href="./buscar"><div class="ic">🔎</div><h3>Buscar hospital</h3>
+  <a class="feature" href="./buscar"><div class="ic">01</div><h3>Buscar hospital</h3>
     <p>Encuentra cualquier hospital y mira los indicadores de calidad de su comunidad.</p>
     <span class="go">Buscar →</span></a>
-  <a class="feature" href="./calidad"><div class="ic">📊</div><h3>Calidad por región</h3>
+  <a class="feature" href="./calidad"><div class="ic">02</div><h3>Calidad por región</h3>
     <p>Mortalidad, seguridad y procesos por comunidad y por área clínica, con su fuente.</p>
     <span class="go">Ver indicadores →</span></a>
-  <a class="feature" href="./esperas"><div class="ic">⏳</div><h3>Listas de espera</h3>
+  <a class="feature" href="./esperas"><div class="ic">03</div><h3>Listas de espera</h3>
     <p>Tiempos de espera quirúrgica por comunidad (SISLE) — lo que de verdad notas.</p>
     <span class="go">Ver esperas →</span></a>
-  <a class="feature" href="./verificacion"><div class="ic">🩺</div><h3>Verificar un médico</h3>
+  <a class="feature" href="./verificacion"><div class="ic">04</div><h3>Verificar un médico</h3>
     <p>Comprueba la colegiación oficial de un facultativo. No es un ranking.</p>
     <span class="go">Verificar →</span></a>
 </div>
 
-<div class="grid grid-cols-4">
-  <div class="card"><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span><div class="muted">localización (OSM)</div></div>
-  <div class="card"><h2>Indicadores de calidad</h2><span class="big">${inclasns.indicators.length}</span><div class="muted">por comunidad (INCLASNS)</div></div>
-  <div class="card"><h2>Cobertura</h2><span class="big">17 · 52</span><div class="muted">comunidades · provincias</div></div>
-  <div class="card"><h2>Fuentes</h2><span class="big">5</span><div class="muted"><a href="./referencias">abiertas y citadas →</a></div></div>
+<div class="statrow">
+  <div><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span><div class="muted">localización (OSM)</div></div>
+  <div><h2>Indicadores de calidad</h2><span class="big">${inclasns.indicators.length}</span><div class="muted">por comunidad (INCLASNS)</div></div>
+  <div><h2>Cobertura</h2><span class="big">17·52</span><div class="muted">comunidades · provincias</div></div>
+  <div><h2>Fuentes</h2><span class="big">5</span><div class="muted"><a href="./referencias">abiertas y citadas →</a></div></div>
 </div>
 
 <div class="card" style="padding:.6rem">

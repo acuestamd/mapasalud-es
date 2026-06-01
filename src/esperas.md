@@ -3,7 +3,9 @@ title: Listas de espera
 toc: false
 ---
 
-# ⏳ Listas de espera quirúrgicas por comunidad autónoma
+<span class="eyebrow">Listas de espera · SISLE-SNS</span>
+
+# Listas de espera quirúrgicas por comunidad autónoma
 
 <div class="hero">
 

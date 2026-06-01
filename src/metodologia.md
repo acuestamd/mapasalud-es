@@ -3,7 +3,9 @@ title: Metodología
 toc: false
 ---
 
-# 🧭 Metodología y propósito
+<span class="eyebrow">Metodología</span>
+
+# Metodología y propósito
 
 <div class="hero">
 

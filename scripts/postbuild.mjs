@@ -11,6 +11,12 @@ for (const f of ["og.png", "robots.txt", "sitemap.xml"]) {
   const s = path.join(SRC, f);
   if (fs.existsSync(s)) fs.copyFileSync(s, path.join(DIST, f));
 }
+// fuentes auto-servidas (cero terceros)
+const fontsSrc = path.join(SRC, "fonts");
+if (fs.existsSync(fontsSrc)) {
+  fs.mkdirSync(path.join(DIST, "fonts"), { recursive: true });
+  for (const f of fs.readdirSync(fontsSrc)) fs.copyFileSync(path.join(fontsSrc, f), path.join(DIST, "fonts", f));
+}
 
 let patched = 0;
 function walk(dir) {

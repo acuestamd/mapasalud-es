@@ -3,7 +3,7 @@ title: Privacidad
 toc: false
 ---
 
-# 🔒 Privacidad
+# Privacidad
 
 <div class="hero">
 
