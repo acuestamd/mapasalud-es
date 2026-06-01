@@ -22,6 +22,10 @@ MapaSalud es un sitio **estático** que no recopila datos personales.
   propia política de privacidad.
 - **Enlaces externos.** Al pulsar enlaces a registros oficiales (CGCOM, REPS) o a fuentes
   y clasificaciones de terceros, se aplican las políticas de privacidad de esos sitios.
+- **Verificación de médicos.** MapaSalud **no consulta, no recibe ni almacena** datos de
+  colegiados: usa el buscador oficial del CGCOM/REPS y la consulta la haces tú contra la
+  fuente. No replicamos su API ni eludimos su reCAPTCHA; si escribes un nombre, se copia a
+  tu portapapeles **en local**, no se envía a ningún sitio.
 
 No se procesan datos de salud de personas identificables: los indicadores son **agregados
 por comunidad autónoma** procedentes de fuentes públicas oficiales.
