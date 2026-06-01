@@ -13,16 +13,21 @@ has no open, objective, source-traceable equivalent — the existing rankings ar
 closed and survey-based. Spain *does* publish the raw material under an open licence
 (Catálogo Nacional de Hospitales, RAE-CMBD/i-CMBD, INCLASNS). This turns it into a map.
 
-## Status — v0.1
+## Status — v0.2
 
 - ✅ **Locations**: 1,025+ hospitals seeded from OpenStreetMap (real coordinates, ODbL).
-- ✅ **Base map**: provinces from the Instituto Geográfico Nacional (CC-BY), rendered
+- ✅ **Base map**: provinces/CCAA from the Instituto Geográfico Nacional (CC-BY), rendered
   with `geoConicConformalSpain` so the **Canary Islands sit in an inset** from day one.
+- ✅ **Quality by region**: 9 INCLASNS indicators by autonomous community — condition-specific
+  in-hospital mortality (AMI, hip fracture, angioplasty, pneumonia, stroke), hip-fracture
+  surgery within 48h, and ambulatory surgery — as a choropleth + ranking, every figure
+  linked to its source (datos de base CMBD/i-CMBD).
+- ✅ **Doctor credential verification** — link-out to CGCOM colegiado + REPS (no scraping,
+  no scores).
 - ✅ **Self-running**: data fetch + normalize scripts; GitHub Actions refreshes the
   data and only commits when something actually changes (git-diffable history).
-- ⏳ **Quality indicators** (i-CMBD, INCLASNS, SISLE) and the authoritative
-  **Catálogo Nacional de Hospitales** join — in integration.
-- ⏳ **Doctor credential verification** (CGCOM colegiado + REPS link-out) — planned.
+- ⏳ **Per-hospital** outcomes (i-CMBD microdata request) and the authoritative
+  **Catálogo Nacional de Hospitales** join — next. Today's quality layer is regional (CCAA).
 
 See `DATA-LICENSES.md` for every source, its licence, and how it's used.
 

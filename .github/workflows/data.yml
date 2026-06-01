@@ -22,6 +22,7 @@ jobs:
         run: |
           python3 scripts/fetch_osm_hospitals.py
           python3 scripts/normalize_osm_hospitals.py
+          python3 scripts/fetch_inclasns.py
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain data-raw src/data)" ]; then

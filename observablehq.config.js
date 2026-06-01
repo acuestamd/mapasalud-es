@@ -3,6 +3,7 @@ export default {
   title: "MapaSalud",
   pages: [
     {name: "Hospitales", path: "/index"},
+    {name: "Calidad por región", path: "/calidad"},
     {name: "Verificar un médico", path: "/verificacion"},
   ],
   // Boundaries-only, key-free basemap; no external tile provider.

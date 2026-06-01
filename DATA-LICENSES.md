@@ -10,6 +10,7 @@ shown on the site is meant to link to its primary source and dataset version.
 |---|---|---|---|
 | **OpenStreetMap** (Overpass) | Hospital **locations** (seed for v0.1) | **ODbL** | © OpenStreetMap contributors. Locations only — not a quality measure. |
 | **es-atlas** (martgnz), from **IGN** | Province / autonomous-region boundaries | data **CC-BY 4.0** (IGN); code MIT | Used with `geoConicConformalSpain` for the Canary Islands inset. Preferred over GADM (non-commercial). |
+| **INCLASNS** (Indicadores Clave del SNS), Ministerio de Sanidad | **Quality indicators by CCAA**: condition-specific in-hospital mortality (AMI, hip fracture, angioplasty, pneumonia, stroke), hip-fracture surgery <48h, ambulatory surgery | open, **RD 1495/2011** | "Origen de los datos: Ministerio de Sanidad." Pulled via the site's keyless chart endpoint (`/export/data`). Datos de base: CMBD/i-CMBD. Regional, not per-hospital. |
 
 ## Integrating next — open government data (RD 1495/2011, commercial reuse with attribution)
 

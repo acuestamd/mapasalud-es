@@ -11,7 +11,7 @@
     "build": "observable build",
     "dev": "observable preview",
     "deploy": "observable deploy",
-    "data": "python3 scripts/fetch_osm_hospitals.py && python3 scripts/normalize_osm_hospitals.py"
+    "data": "python3 scripts/fetch_osm_hospitals.py && python3 scripts/normalize_osm_hospitals.py && python3 scripts/fetch_inclasns.py"
   },
   "dependencies": {
     "@observablehq/framework": "^1.13.0",
