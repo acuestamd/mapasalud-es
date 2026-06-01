@@ -33,8 +33,8 @@ INDICATORS = {
     91: ("Cirugía ambulatoria en el SNS (%)", "higher"),
     114: ("Colecistectomía por laparoscopia (%)", "higher"),
     121: ("Fractura de cadera en pacientes ingresados (seguridad del paciente)", "lower"),
-    133: ("Amputación de miembro inferior en personas con diabetes", "lower"),
-    330: ("Hospitalización por complicaciones agudas de la diabetes", "lower"),
+    133: ("Amputación de miembro inferior en personas con diabetes (evitable, sensible a primaria)", "lower"),
+    330: ("Hospitalización por complicaciones agudas de la diabetes (evitable, sensible a primaria)", "lower"),
     337: ("Sepsis postquirúrgica", "lower"),
 }
 
@@ -100,8 +100,9 @@ def main():
             "group": meta.get("largeGroup") or meta.get("tags"),
             "betterWhen": better,
             "format": meta.get("numberFormat", "0.00"),
-            "sourceUrl": (meta.get("sourceUrl") or "").split("\n")[0] or
-                         "https://inclasns.sanidad.gob.es/",
+            "sourceUrl": (meta.get("sourceUrl") or "").split("\n")[0]
+                         .replace("mscbs.gob.es", "sanidad.gob.es").replace("msssi.es", "sanidad.gob.es")
+                         or "https://inclasns.sanidad.gob.es/",
             "sexes": sorted(sexes, key=lambda s: {"total": 0, "mujer": 1, "hombre": 2}.get(s, 3)),
             "latestYear": latest,
             "values": values,

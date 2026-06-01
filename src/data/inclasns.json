@@ -36,8 +36,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -1288,8 +1288,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -2537,8 +2537,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -3771,8 +3771,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -4877,8 +4877,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -6129,8 +6129,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -6810,8 +6810,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -7486,14 +7486,14 @@
    "group": "Calidad",
    "betterWhen": "higher",
    "format": "0.00%",
-   "sourceUrl": "https://www.mscbs.gob.es/estadEstudios/estadisticas/cmbdhome.htm",
+   "sourceUrl": "https://www.sanidad.gob.es/estadEstudios/estadisticas/cmbdhome.htm",
    "sexes": [
     "mujer",
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -8690,8 +8690,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -9626,8 +9626,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -10871,8 +10871,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -12080,7 +12080,7 @@
   },
   {
    "id": 133,
-   "name": "Amputación de miembro inferior en personas con diabetes",
+   "name": "Amputación de miembro inferior en personas con diabetes (evitable, sensible a primaria)",
    "group": "Calidad",
    "betterWhen": "lower",
    "format": "0.00",
@@ -12090,8 +12090,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -13328,7 +13328,7 @@
   },
   {
    "id": 330,
-   "name": "Hospitalización por complicaciones agudas de la diabetes",
+   "name": "Hospitalización por complicaciones agudas de la diabetes (evitable, sensible a primaria)",
    "group": "",
    "betterWhen": "lower",
    "format": "0.00",
@@ -13338,8 +13338,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {
@@ -13958,8 +13958,8 @@
     "hombre"
    ],
    "latestYear": {
-    "mujer": "2024",
-    "hombre": "2024"
+    "hombre": "2024",
+    "mujer": "2024"
    },
    "values": {
     "hombre": {

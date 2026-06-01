@@ -54,5 +54,9 @@ link only (no tables, scores, or badges copied):
 - No raw Google/Doctoralia review scraping; no operator-authored doctor scores.
 - Strictly non-commercial; no paid placement (it would void both the legal basis and
   the credibility).
-- Small-N discipline: confidence intervals, suppress low denominators, risk-adjust
-  via i-CMBD's already-adjusted indicators.
+- Current quality figures are **crude** regional (CCAA) in-hospital rates — **not**
+  risk-adjusted. Inter-regional differences partly reflect case-mix/age.
+- Small-N discipline: low-volume regions (Ceuta, Melilla) are flagged "bajo N" and kept
+  out of the colour scale's domain so they don't distort it. Confidence intervals,
+  low-denominator suppression and GRD-APR risk-adjustment are **planned** with the
+  per-hospital i-CMBD microdata (not yet implemented).

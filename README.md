@@ -13,7 +13,7 @@ has no open, objective, source-traceable equivalent — the existing rankings ar
 closed and survey-based. Spain *does* publish the raw material under an open licence
 (Catálogo Nacional de Hospitales, RAE-CMBD/i-CMBD, INCLASNS). This turns it into a map.
 
-## Status — v0.2
+## Status — v0.4
 
 - ✅ **Locations**: 1,025+ hospitals seeded from OpenStreetMap (real coordinates, ODbL).
 - ✅ **Base map**: provinces/CCAA from the Instituto Geográfico Nacional (CC-BY), rendered
@@ -34,8 +34,8 @@ closed and survey-based. Spain *does* publish the raw material under an open lic
   Merco MRS, IDIS) and official open sources — never reproduced.
 - ✅ **Doctor credential verification** — link-out to CGCOM colegiado + REPS (no scraping,
   no scores).
-- ✅ **Self-running**: data fetch + normalize scripts; GitHub Actions refreshes the
-  data and only commits when something actually changes (git-diffable history).
+- ✅ **Self-running**: a scheduled GitHub Action refreshes the data and commits only real
+  diffs (git-diffable history); Vercel rebuilds and redeploys on every push.
 - ⏳ **Per-hospital** outcomes (i-CMBD microdata request) and the authoritative
   **Catálogo Nacional de Hospitales** join — next. Today's quality layer is regional (CCAA).
 
@@ -49,7 +49,8 @@ scripts/normalize_osm_hospitals.py # normalize + sort    -> src/data/hospitals.g
 src/index.md                       # Observable Framework page: d3 + composite projection
 ```
 
-- Static site, **zero backend**, deployed to GitHub Pages.
+- Static site, **zero backend**, deployed to **Vercel** (mapasalud-es.vercel.app),
+  auto-deployed from GitHub on every push.
 - Key-free basemap (boundaries only — no tile provider, no API keys).
 - Built with [Observable Framework](https://observablehq.com/framework/).
 
@@ -75,8 +76,9 @@ npm run build    # build static site to dist/
 ## Disclaimer
 
 These are **indicators to inform the questions you ask your doctor — not verdicts**,
-and **not medical advice**. Quality indicators, once added, are risk-adjusted where
-possible and shown with their limitations.
+and **not medical advice**. The quality figures shown today are **crude** regional rates
+(not risk-adjusted); risk adjustment (GRD-APR) will arrive with the per-hospital i-CMBD
+microdata. Low-volume regions are flagged and kept out of the colour scale.
 
 ## Licence
 

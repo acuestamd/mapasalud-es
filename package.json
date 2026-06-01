@@ -1,6 +1,6 @@
 {
   "name": "mapasalud-es",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "Open, source-cited map of Spain's hospitals — quality indicators and official doctor-credential verification.",
   "license": "MIT",
   "author": "Armando Cuesta",
@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf src/.observablehq/cache",
-    "build": "observable build && cp src/og.png dist/og.png",
+    "build": "observable build && node scripts/postbuild.mjs",
     "dev": "observable preview",
     "deploy": "observable deploy",
     "data": "python3 scripts/fetch_osm_hospitals.py && python3 scripts/normalize_osm_hospitals.py && python3 scripts/fetch_inclasns.py"

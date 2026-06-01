@@ -26,10 +26,13 @@ import {geoConicConformalSpain} from "npm:d3-composite-projections";
 
 const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
 const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
-const SEX_LABEL = {total: "Total", mujer: "Mujeres", hombre: "Hombres"};
+const SEX_LABEL = {mujer: "Mujeres", hombre: "Hombres"};
+const LOW_N = new Set(["18", "19"]); // Ceuta y Melilla: muy pocos casos, cifras inestables
 
 // Map INCLASNS indicators onto clinical areas (the "by specialty" dimension that
 // open regional data supports today; per-hospital outcomes await the CMBD request).
+// #133/#330 son indicadores sensibles a atención primaria (evitables), no resultados
+// del hospital que ingresa.
 const SPECIALTIES = {
   "Todas las áreas": null,
   "Cardiología": [129, 127],
@@ -37,8 +40,8 @@ const SPECIALTIES = {
   "Neurología (ictus)": [332, 331],
   "Neumología / respiratorio": [132],
   "Cirugía general y digestiva": [114, 91, 337],
-  "Endocrinología / diabetes": [133, 330],
-  "Seguridad del paciente": [121, 337, 133],
+  "Seguridad del paciente": [121, 337],
+  "Atención primaria / evitables": [133, 330],
   "Visión global": [125],
 };
 ```
@@ -81,10 +84,25 @@ const anio = view(Inputs.select(yearsAvail, {
 const vals = (indicator.values[sexo] ?? {})[anio] ?? {};
 const national = vals.ES;
 const ccaaEntries = Object.entries(vals).filter(([k]) => k !== "ES");
-const extent = d3.extent(ccaaEntries, d => d[1]);
+// Escala acotada a p5–p95 (excluyendo N bajo) para que los extremos no laven el resto.
+const reliable = ccaaEntries.filter(([k]) => !LOW_N.has(k)).map(d => d[1]).sort((a, b) => a - b);
+const dom = reliable.length >= 4
+  ? [d3.quantile(reliable, 0.05), d3.quantile(reliable, 0.95)]
+  : d3.extent(ccaaEntries, d => d[1]);
 const interp = indicator.betterWhen === "lower" ? d3.interpolateReds : d3.interpolateGreens;
-const color = d3.scaleSequential(extent, interp);
+const color = d3.scaleSequential(dom, interp).clamp(true);
 const fmtN = v => v == null ? "—" : v.toLocaleString("es-ES", {maximumFractionDigits: 2});
+```
+
+```js
+display(html`<div class="vizhead">
+  <b>${indicator.name}</b>
+  <span class="chip chip-sex">${SEX_LABEL[sexo] ?? sexo}</span>
+  <span class="chip">${anio}</span>
+  <span class="chip">${indicator.betterWhen === "lower" ? "menor = mejor" : "mayor = mejor"}</span>
+</div>
+<div class="muted vizsub">Tasas <b>crudas</b> (no ajustadas por riesgo). INCLASNS publica este
+indicador por sexo: estás viendo <b>${(SEX_LABEL[sexo] ?? sexo).toLowerCase()}</b> — cambia el sexo arriba.</div>`);
 ```
 
 <div class="grid grid-cols-2" style="grid-template-columns: 1.4fr 1fr; align-items:start;">
@@ -103,9 +121,12 @@ function mapa(width) {
     .data(ccaaFeatures.features).join("path")
       .attr("d", path)
       .attr("fill", f => { const v = vals[String(f.id)]; return v == null ? "#e9e9e9" : color(v); })
-      .attr("stroke", "#fff").attr("stroke-width", 0.7)
+      .attr("stroke", f => LOW_N.has(String(f.id)) ? "#b3261e" : "#fff")
+      .attr("stroke-width", f => LOW_N.has(String(f.id)) ? 1.1 : 0.7)
+      .attr("stroke-dasharray", f => LOW_N.has(String(f.id)) ? "3,2" : null)
     .append("title")
-      .text(f => `${f.properties.name}: ${vals[String(f.id)] == null ? "sin datos" : fmtN(vals[String(f.id)])}`);
+      .text(f => { const v = vals[String(f.id)]; const ln = LOW_N.has(String(f.id)) ? " · bajo N (poco fiable)" : "";
+        return `${f.properties.name}: ${v == null ? "sin datos" : fmtN(v)}${ln}`; });
 
   svg.append("path").attr("d", projection.getCompositionBorders())
       .attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
@@ -125,7 +146,7 @@ display((() => {
   d3.range(0, 1.01, 0.1).forEach(t => defs.append("stop").attr("offset", `${t*100}%`)
     .attr("stop-color", interp(t)));
   svg.append("rect").attr("width", w).attr("height", 10).attr("fill", `url(#${id})`);
-  const x = d3.scaleLinear(extent, [0, w]);
+  const x = d3.scaleLinear(dom, [0, w]).clamp(true);
   svg.append("g").attr("transform", "translate(0,10)")
     .call(d3.axisBottom(x).ticks(4).tickSize(4).tickFormat(d => fmtN(d)))
     .call(g => g.select(".domain").remove());
@@ -150,9 +171,9 @@ display((() => {
     indicator.betterWhen === "lower" ? a[1] - b[1] : b[1] - a[1]);
   const rows = sorted.map(([code, v], i) => html`<tr>
     <td style="text-align:right;color:var(--theme-foreground-muted)">${i + 1}</td>
-    <td>${ccaaName.get(code) ?? code}</td>
+    <td>${ccaaName.get(code) ?? code}${LOW_N.has(code) ? html` <span class="lown">bajo N</span>` : ""}</td>
     <td style="text-align:right;font-variant-numeric:tabular-nums"><b>${fmtN(v)}</b></td>
-    <td style="width:90px"><span style="display:inline-block;height:10px;width:${national?Math.max(4,80*v/d3.max(ccaaEntries,d=>d[1])):0}px;background:${color(v)}"></span></td>
+    <td style="width:90px"><span style="display:inline-block;height:10px;width:${Math.max(3, Math.min(80, 80 * v / dom[1]))}px;background:${color(v)}"></span></td>
   </tr>`);
   return html`<table style="width:100%;border-collapse:collapse;font-size:13px">
     <thead><tr style="text-align:left;border-bottom:1px solid var(--theme-foreground-faint)">
@@ -170,22 +191,32 @@ display((() => {
 
 ```js
 display(html`<div class="src">
-  <b>Fuente:</b> Origen de los datos: Ministerio de Sanidad —
-  <a href="${indicator.sourceUrl}" target="_blank" rel="noopener">INCLASNS, indicador #${indicator.id}</a>
-  · datos de base CMBD / i-CMBD · ${SEX_LABEL[sexo]} · ${anio}.
+  Origen de los datos: Ministerio de Sanidad ·
+  <a href="${indicator.sourceUrl}" target="_blank" rel="noopener">INCLASNS — indicador ${indicator.id}</a>
+  · datos de base CMBD / i-CMBD · ${SEX_LABEL[sexo] ?? sexo} · ${anio}.
 </div>`);
 ```
 
 <div class="note">
 
 **Cómo leer esto.** Son cifras **por comunidad autónoma**, no por hospital — útiles para
-ver patrones regionales, no para juzgar un centro concreto. La mortalidad intrahospitalaria
-debería interpretarse **ajustada por riesgo** (gravedad/casuística): el i-CMBD aplica
-ajuste GRD-APR, pero comunidades pequeñas como **Ceuta y Melilla** tienen pocos casos y sus
-cifras oscilan mucho (cautela con los extremos). INCLASNS publica estos indicadores **por
-sexo**. **No es consejo médico** ni una medida validada de la calidad de un profesional.
-Metodología y fuentes: [`DATA-LICENSES.md`](https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md).
+ver patrones regionales, no para juzgar un centro concreto. Son **tasas crudas, no
+ajustadas por riesgo**: las diferencias entre comunidades reflejan en parte la
+**casuística y la edad** de cada población, no solo la calidad asistencial. El ajuste por
+riesgo (GRD-APR) y los intervalos de confianza llegarán con los microdatos i-CMBD por
+centro (en trámite). Comunidades pequeñas como **Ceuta y Melilla** tienen muy pocos casos
+y sus cifras oscilan mucho: se marcan como **bajo N** y no deben leerse como un ranking.
+INCLASNS publica estos indicadores **por sexo**. **No es consejo médico** ni una medida
+validada de la calidad de un profesional. Metodología y fuentes:
+[`DATA-LICENSES.md`](https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md).
 
 </div>
 
-<style>.src { font-size: 0.85rem; }</style>
+<style>
+.src { font-size: 0.85rem; }
+.vizhead { font-size: 1.05rem; margin: .2rem 0 .15rem; }
+.vizsub { font-size: .85rem; margin-bottom: .7rem; }
+.chip { display:inline-block; background: var(--theme-foreground-faintest); border-radius: 999px; padding: 1px 9px; font-size: .8rem; font-weight: 600; margin-left: .35rem; }
+.chip-sex { background:#0b6fb8; color:#fff; }
+.lown { background:#fdecea; color:#b3261e; border-radius:999px; padding:0 7px; font-size:.72rem; font-weight:600; white-space:nowrap; }
+</style>

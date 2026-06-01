@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://mapasalud-es.vercel.app/</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://mapasalud-es.vercel.app/buscar</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://mapasalud-es.vercel.app/calidad</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://mapasalud-es.vercel.app/verificacion</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://mapasalud-es.vercel.app/referencias</loc><changefreq>monthly</changefreq></url>
+</urlset>

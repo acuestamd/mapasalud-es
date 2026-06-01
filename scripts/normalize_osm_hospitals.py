@@ -11,6 +11,14 @@ OUT = pathlib.Path("src/data/hospitals.geojson")
 def clean(s):
     return re.sub(r"\s+", " ", s).strip() if s else None
 
+
+def tidy_name(name):
+    """Quita numeración/viñetas iniciales tipo '8- ' o '· ' sin tocar nombres legítimos
+    que empiezan por número (p. ej. '12 de Octubre')."""
+    out = re.sub(r"^\s*\d+\s*[-–—.)]\s+", "", name)        # '8- ', '8. ', '8) '
+    out = re.sub(r"^[\s·•*\-–—]+", "", out).strip()         # viñetas/guiones iniciales
+    return out or name
+
 def main():
     data = json.loads(RAW.read_text())
     feats = []
@@ -19,6 +27,7 @@ def main():
         name = clean(t.get("name"))
         if not name:
             continue
+        name = tidy_name(name)
         lat = e.get("lat") or (e.get("center") or {}).get("lat")
         lon = e.get("lon") or (e.get("center") or {}).get("lon")
         if lat is None or lon is None:

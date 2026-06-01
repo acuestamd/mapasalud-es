@@ -26,7 +26,7 @@ const spain = await FileAttachment("data/provincias.json").json();
 ```js
 const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
 const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
-const SEX_LABEL = {total: "Total", mujer: "Mujeres", hombre: "Hombres"};
+const SEX_LABEL = {mujer: "Mujeres", hombre: "Hombres"};
 
 function tipoOf(ot) {
   ot = (ot || "").toLowerCase();
@@ -124,8 +124,9 @@ function ficha(h) {
       ${h.titularidad !== "—" ? html`· <span class="pill">${h.titularidad}</span>` : ""}
       ${h.urgencias === "Sí" ? html`· <span class="pill">Urgencias</span>` : ""}
       ${h.web ? html`· <a href="${h.web}" target="_blank" rel="noopener">web ↗</a>` : ""}</div>
-    <p class="muted" style="margin:.5rem 0">Indicadores de <b>${h.comunidad}</b> (regionales, ${"no"} de este hospital).
-      Los datos por hospital están en trámite (solicitud CMBD).</p>
+    <p class="muted" style="margin:.5rem 0">Indicadores de <b>${h.comunidad}</b> — regionales y
+      <b>tasas crudas (mujeres)</b>, no de este hospital. Los datos por hospital están en trámite
+      (solicitud CMBD).</p>
     ${h.ccaaCode ? fichaRegional(h.ccaaCode) : html`<div class="muted">Comunidad no determinada para este punto.</div>`}
     <div class="meta" style="margin-top:.6rem">¿Es real el médico que te atiende? <a href="./verificacion">Verifica su colegiación →</a></div>
   </div>`;
@@ -139,8 +140,9 @@ display(ficha(Array.isArray(seleccion) ? seleccion[seleccion.length - 1] : selec
 **Cómo leer esto.** El cruce hospital→comunidad se calcula desde las coordenadas del
 hospital. Los indicadores mostrados son **de la comunidad autónoma**, útiles como
 contexto, **no son el resultado de este hospital concreto** — eso llegará con los
-microdatos CMBD por centro (anonimizados, en trámite). La titularidad/urgencias
-proceden de OpenStreetMap y pueden faltar. **No es consejo médico.**
+microdatos CMBD por centro (anonimizados, en trámite). La titularidad y las urgencias
+proceden de OpenStreetMap y solo constan para ~3 de cada 10 hospitales (por eso ves «—»).
+**No es consejo médico.**
 
 </div>
 
