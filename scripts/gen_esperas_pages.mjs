@@ -22,13 +22,11 @@ let n = 0;
 for (const [code, name] of Object.entries(NAMES)) {
   const d = dias[code];
   if (d == null) continue;
-  const url = `${BASE}/esperas/${code}`;
   const title = `Listas de espera quirúrgica en ${name}`;
-  const desc = `A 31 de diciembre de 2025, la espera quirúrgica media en ${name} fue de ${fmt(d)} días (media de España: ${fmt(dias.ES)}). Datos abiertos del SISLE-SNS, Ministerio de Sanidad.`;
-  const head = `<link rel="canonical" href="${url}"><meta property="og:url" content="${url}"><meta property="og:title" content="${title} — MapaSalud"><meta property="og:description" content="${desc}"><meta name="description" content="${desc}">`;
+  // Sin `head` en front-matter: en Framework eso reemplazaría el head global (fuentes, og:image,
+  // JSON-LD, tema). El canonical/og:url por página los pone observablehq.config.js (head como función).
   const md = `---
 title: ${title}
-head: '${head}'
 toc: false
 ---
 

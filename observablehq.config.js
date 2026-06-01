@@ -18,8 +18,15 @@ export default {
     {name: "Datos abiertos", path: "/datos"},
     {name: "Referencias", path: "/referencias"},
   ],
-  head: `
+  // head como función: Framework, si el front-matter define `head`, REEMPLAZA este global.
+  // Por eso ninguna página usa `head` en su front-matter; aquí construimos el head completo
+  // y añadimos canonical + og:url propios de cada página (self-canonical en todas).
+  head: ({path}) => {
+    const u = "https://mapasalud-es.vercel.app" + (path === "/index" ? "/" : path);
+    return `
 <meta name="description" content="${DESC}">
+<link rel="canonical" href="${u}">
+<meta property="og:url" content="${u}">
 <meta name="theme-color" content="#0c6b73">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MapaSalud — Hospitales de España">
@@ -123,7 +130,8 @@ td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:
   publisher: { "@type": "Person", name: "Armando Cuesta", url: "https://x.com/acuestaMD" },
   spatialCoverage: { "@type": "Place", name: "España" },
   keywords: ["hospitales", "calidad asistencial", "INCLASNS", "CMBD", "sanidad", "España", "datos abiertos"],
-})}</script>`,
+})}</script>`;
+  },
   footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © IGN (CC-BY 4.0) ·
     Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011) · fechas por fuente (ver cada página). ·
     Proyecto independiente, sin financiación ni patrocinio. Información para preguntar mejor a tu médico, no un veredicto. No es consejo médico.<br>
