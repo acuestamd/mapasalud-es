@@ -110,11 +110,23 @@ def main():
         print(f"  ok {ind_id}: {name[:48]} | sexes={sorted(sexes)} | latest={latest}")
         time.sleep(1)
 
+    # No publicar un dataset parcial: si falta algún indicador, abortar (commit-on-change
+    # mantiene el último bueno).
+    if len(out_indicators) < len(INDICATORS):
+        raise SystemExit(
+            f"ERROR: solo {len(out_indicators)}/{len(INDICATORS)} indicadores obtenidos; "
+            "abortando para no publicar datos parciales.")
+
+    years_all = [y for ind in out_indicators for y in ind["latestYear"].values()]
+    data_year = max(years_all) if years_all else None
+
     doc = {
         "title": "Indicadores de calidad hospitalaria por comunidad autónoma",
         "source": "INCLASNS — Indicadores Clave del SNS, Ministerio de Sanidad (RD 1495/2011). "
                   "Datos de base: CMBD / i-CMBD. Granularidad regional (CCAA), no por hospital.",
         "sourceHome": "https://inclasns.sanidad.gob.es/",
+        "dataYear": data_year,
+        "latestYearProvisional": True,  # el último año de CMBD suele ser provisional
         "ccaa": CCAA,
         "indicators": out_indicators,
     }

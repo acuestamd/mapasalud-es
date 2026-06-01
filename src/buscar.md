@@ -15,17 +15,11 @@ CMBD (en trámite). Útil para situar un hospital en el contexto de calidad de s
 </div>
 
 ```js
-import * as topojson from "npm:topojson-client";
-import * as d3 from "npm:d3";
-
 const hospitals = await FileAttachment("data/hospitals.geojson").json();
 const inclasns = await FileAttachment("data/inclasns.json").json();
-const spain = await FileAttachment("data/provincias.json").json();
 ```
 
 ```js
-const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
-const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
 const SEX_LABEL = {mujer: "Mujeres", hombre: "Hombres"};
 
 function tipoOf(ot) {
@@ -35,20 +29,15 @@ function tipoOf(ot) {
   return ot ? "Otro" : "—";
 }
 
-// Assign each hospital to its autonomous community by point-in-polygon (100% coverage
-// from coordinates, vs sparse address tags).
+// La comunidad autónoma ya viene precalculada en el pipeline (scripts/assign_ccaa.mjs),
+// así que no recalculamos point-in-polygon en el navegador.
 const hospRows = hospitals.features.map(f => {
-  const [lon, lat] = f.geometry.coordinates;
-  let code = null;
-  for (const cf of ccaaFeatures.features) {
-    if (d3.geoContains(cf, [lon, lat])) { code = String(cf.id); break; }
-  }
   const p = f.properties;
   return {
     nombre: p.name,
     municipio: p.city || "",
-    comunidad: code ? ccaaName.get(code) : "—",
-    ccaaCode: code,
+    comunidad: p.ccaaName || "—",
+    ccaaCode: p.ccaa || null,
     titularidad: tipoOf(p.operator_type),
     urgencias: p.emergency === "yes" ? "Sí" : (p.emergency === "no" ? "No" : "—"),
     web: p.website || "",

@@ -70,7 +70,20 @@ body { -webkit-font-smoothing:antialiased; }
   font-size:.92rem; background:var(--theme-foreground-faintest); border-radius:0 8px 8px 0; }
 .src { max-width:54rem; font-size:.85rem; color:var(--theme-foreground-muted); margin-top:.5rem; }
 td.good { color:#137333; font-weight:600; } td.bad { color:#b3261e; font-weight:600; }
-</style>`,
+</style>
+<script type="application/ld+json">${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: "MapaSalud — Hospitales de España",
+  description: DESC,
+  url: "https://mapasalud-es.vercel.app/",
+  license: "https://opensource.org/licenses/MIT",
+  isAccessibleForFree: true,
+  inLanguage: "es",
+  creator: { "@type": "Person", name: "Armando Cuesta" },
+  spatialCoverage: { "@type": "Place", name: "España" },
+  keywords: ["hospitales", "calidad asistencial", "INCLASNS", "CMBD", "sanidad", "España", "datos abiertos"],
+})}</script>`,
   footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © IGN (CC-BY 4.0) ·
     Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011) · último dato 2024. ·
     Información para orientar tus preguntas al médico, no un veredicto. No es consejo médico.<br>

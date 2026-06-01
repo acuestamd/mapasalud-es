@@ -21,11 +21,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Fetch + normalize
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Fetch + normalize + assign CCAA + indicators
         run: |
           python3 scripts/fetch_osm_hospitals.py
           python3 scripts/normalize_osm_hospitals.py
+          node scripts/assign_ccaa.mjs
           python3 scripts/fetch_inclasns.py
+      - name: Validate data schema
+        run: pip install pytest && python -m pytest -q
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain data-raw src/data)" ]; then
