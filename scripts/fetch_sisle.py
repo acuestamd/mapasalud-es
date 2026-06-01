@@ -125,6 +125,11 @@ def parse():
         raise SystemExit(f"ERROR SISLE: solo {len(ccaa_codes)} CCAA + {'ES' if 'ES' in dias else 'sin total'}; aborto")
     if not (30 <= dias["ES"] <= 400):
         raise SystemExit(f"ERROR SISLE: tiempo medio nacional fuera de rango: {dias['ES']}")
+    # Validación cruzada: el total nacional debe quedar dentro del rango de las CCAA
+    # (si no, probablemente se ha parseado una columna equivocada tras un cambio de maqueta).
+    vc = [dias[c] for c in ccaa_codes]
+    if not (min(vc) <= dias["ES"] <= max(vc)):
+        raise SystemExit(f"ERROR SISLE: total nacional {dias['ES']} fuera del rango CCAA [{min(vc)}, {max(vc)}] — posible columna mal parseada")
     return version, dias, pct6m, tasa, total
 
 
