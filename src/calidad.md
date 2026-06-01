@@ -46,6 +46,9 @@ const SPECIALTIES = {
 };
 ```
 
+<div class="filtros">
+<h2>Filtros</h2>
+
 ```js
 const area = view(Inputs.select(Object.keys(SPECIALTIES), {
   label: "Área clínica / especialidad",
@@ -80,6 +83,9 @@ const anio = view(Inputs.select(yearsAvail, {
 }));
 ```
 
+</div>
+
+
 ```js
 const vals = (indicator.values[sexo] ?? {})[anio] ?? {};
 const national = vals.ES;
@@ -89,8 +95,13 @@ const reliable = ccaaEntries.filter(([k]) => !LOW_N.has(k)).map(d => d[1]).sort(
 const dom = reliable.length >= 4
   ? [d3.quantile(reliable, 0.05), d3.quantile(reliable, 0.95)]
   : d3.extent(ccaaEntries, d => d[1]);
-const interp = indicator.betterWhen === "lower" ? d3.interpolateReds : d3.interpolateGreens;
-const color = d3.scaleSequential(dom, interp).clamp(true);
+// Una sola rampa apta para daltonismo (amarillo→rojo, sin verde), orientada por
+// "bondad": rojo = peor, amarillo claro = mejor, en TODOS los indicadores.
+const norm = v => Math.max(0, Math.min(1, (v - dom[0]) / ((dom[1] - dom[0]) || 1)));
+const badness = v => indicator.betterWhen === "lower" ? norm(v) : 1 - norm(v);
+const colorScale = v => d3.interpolateYlOrRd(0.12 + 0.78 * badness(v));
+const goodFrac = v => 1 - badness(v);
+const NODATA = "#cbd5db";
 const fmtN = v => v == null ? "—" : v.toLocaleString("es-ES", {maximumFractionDigits: 2});
 ```
 
@@ -105,7 +116,7 @@ display(html`<div class="vizhead">
 indicador por sexo: estás viendo <b>${(SEX_LABEL[sexo] ?? sexo).toLowerCase()}</b> — cambia el sexo arriba.</div>`);
 ```
 
-<div class="grid grid-cols-2" style="grid-template-columns: 1.4fr 1fr; align-items:start;">
+<div class="calidad-split">
 <div class="card">
 
 ```js
@@ -115,18 +126,31 @@ function mapa(width) {
   const path = d3.geoPath(projection);
   const svg = d3.create("svg")
     .attr("viewBox", [0, 0, width, height]).attr("width", width)
+    .attr("role", "img")
+    .attr("aria-label", `Mapa de España por comunidad autónoma: ${indicator.name} (${SEX_LABEL[sexo] ?? sexo}, ${anio}). Los valores de cada comunidad están en la tabla adjunta.`)
     .attr("style", "max-width:100%;height:auto;font:11px var(--sans-serif);");
 
   svg.append("g").selectAll("path")
     .data(ccaaFeatures.features).join("path")
       .attr("d", path)
-      .attr("fill", f => { const v = vals[String(f.id)]; return v == null ? "#e9e9e9" : color(v); })
-      .attr("stroke", f => LOW_N.has(String(f.id)) ? "#b3261e" : "#fff")
+      .attr("fill", f => { const v = vals[String(f.id)]; return v == null ? NODATA : colorScale(v); })
+      .attr("stroke", f => LOW_N.has(String(f.id)) ? "#7a1d12" : "#fff")
       .attr("stroke-width", f => LOW_N.has(String(f.id)) ? 1.1 : 0.7)
       .attr("stroke-dasharray", f => LOW_N.has(String(f.id)) ? "3,2" : null)
     .append("title")
       .text(f => { const v = vals[String(f.id)]; const ln = LOW_N.has(String(f.id)) ? " · bajo N (poco fiable)" : "";
         return `${f.properties.name}: ${v == null ? "sin datos" : fmtN(v)}${ln}`; });
+
+  // Etiqueta de valor en cada comunidad con suficiente área (señal no cromática para táctil)
+  svg.append("g").attr("pointer-events", "none").attr("text-anchor", "middle")
+      .attr("font-size", Math.max(7, width / 95)).attr("font-weight", 600)
+    .selectAll("text")
+    .data(ccaaFeatures.features.filter(f => vals[String(f.id)] != null && path.area(f) > 240))
+    .join("text")
+      .attr("transform", f => `translate(${path.centroid(f)})`).attr("dy", "0.32em")
+      .attr("fill", "#1a1a1a").attr("stroke", "#fff")
+      .attr("stroke-width", Math.max(1.6, width / 520)).attr("paint-order", "stroke")
+      .text(f => fmtN(vals[String(f.id)]));
 
   svg.append("path").attr("d", projection.getCompositionBorders())
       .attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
@@ -139,25 +163,29 @@ display(resize(width => mapa(width)));
 ```js
 // legend
 display((() => {
-  const w = 240, h = 44;
-  const svg = d3.create("svg").attr("width", w).attr("height", h).attr("style","overflow:visible;font:10px var(--sans-serif)");
+  const w = 240, h = 58;
+  const svg = d3.create("svg").attr("width", w).attr("height", h)
+    .attr("role", "img").attr("aria-label", "Leyenda: rojo = peor, amarillo claro = mejor")
+    .attr("style", "overflow:visible;font:10px var(--sans-serif)");
   const id = "grad-cal";
   const defs = svg.append("defs").append("linearGradient").attr("id", id);
-  d3.range(0, 1.01, 0.1).forEach(t => defs.append("stop").attr("offset", `${t*100}%`)
-    .attr("stop-color", interp(t)));
-  svg.append("rect").attr("width", w).attr("height", 10).attr("fill", `url(#${id})`);
+  d3.range(0, 1.01, 0.1).forEach(t => defs.append("stop").attr("offset", `${t * 100}%`)
+    .attr("stop-color", colorScale(dom[0] + t * (dom[1] - dom[0]))));
+  svg.append("rect").attr("y", 6).attr("width", w).attr("height", 10).attr("fill", `url(#${id})`).attr("rx", 2);
   const x = d3.scaleLinear(dom, [0, w]).clamp(true);
-  svg.append("g").attr("transform", "translate(0,10)")
+  svg.append("g").attr("transform", "translate(0,16)")
     .call(d3.axisBottom(x).ticks(4).tickSize(4).tickFormat(d => fmtN(d)))
     .call(g => g.select(".domain").remove());
   if (national != null) {
-    svg.append("line").attr("x1", x(national)).attr("x2", x(national)).attr("y1", -3).attr("y2", 13)
+    svg.append("line").attr("x1", x(national)).attr("x2", x(national)).attr("y1", 3).attr("y2", 19)
       .attr("stroke", "#111").attr("stroke-width", 1.5);
-    svg.append("text").attr("x", x(national)).attr("y", 30).attr("text-anchor", "middle")
+    svg.append("text").attr("x", x(national)).attr("y", 2).attr("text-anchor", "middle")
       .attr("font-weight", 700).text(`España ${fmtN(national)}`);
   }
-  const note = svg.append("text").attr("x", 0).attr("y", 42).attr("fill", "var(--theme-foreground-muted)");
-  note.text(indicator.betterWhen === "lower" ? "← mejor   ·   peor →" : "← peor   ·   mejor →");
+  svg.append("text").attr("x", 0).attr("y", 42).attr("fill", "var(--theme-foreground-muted)")
+    .text(indicator.betterWhen === "lower" ? "← mejor   ·   peor →" : "← peor   ·   mejor →");
+  svg.append("rect").attr("x", 0).attr("y", 48).attr("width", 10).attr("height", 10).attr("fill", NODATA).attr("rx", 2);
+  svg.append("text").attr("x", 14).attr("y", 56).attr("fill", "var(--theme-foreground-muted)").text("sin datos");
   return svg.node();
 })());
 ```
@@ -173,7 +201,7 @@ display((() => {
     <td style="text-align:right;color:var(--theme-foreground-muted)">${i + 1}</td>
     <td>${ccaaName.get(code) ?? code}${LOW_N.has(code) ? html` <span class="lown">bajo N</span>` : ""}</td>
     <td style="text-align:right;font-variant-numeric:tabular-nums"><b>${fmtN(v)}</b></td>
-    <td style="width:90px"><span style="display:inline-block;height:10px;width:${Math.max(3, Math.min(80, 80 * v / dom[1]))}px;background:${color(v)}"></span></td>
+    <td style="width:90px" title="barra = mejor que la media regional"><span style="display:inline-block;height:10px;width:${Math.round(6 + 74 * goodFrac(v))}px;background:${colorScale(v)}"></span></td>
   </tr>`);
   return html`<table style="width:100%;border-collapse:collapse;font-size:13px">
     <thead><tr style="text-align:left;border-bottom:1px solid var(--theme-foreground-faint)">
@@ -219,4 +247,8 @@ validada de la calidad de un profesional. Metodología y fuentes:
 .chip { display:inline-block; background: var(--theme-foreground-faintest); border-radius: 999px; padding: 1px 9px; font-size: .8rem; font-weight: 600; margin-left: .35rem; }
 .chip-sex { background:#0b6fb8; color:#fff; }
 .lown { background:#fdecea; color:#b3261e; border-radius:999px; padding:0 7px; font-size:.72rem; font-weight:600; white-space:nowrap; }
+.calidad-split { display:grid; gap:1rem; grid-template-columns:1fr; align-items:start; }
+@media (min-width:680px){ .calidad-split { grid-template-columns:1.5fr 1fr; } }
+.filtros { border:1px solid var(--theme-foreground-faint); border-radius:12px; padding:.7rem 1rem .9rem; margin:.4rem 0 1rem; }
+.filtros > h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--theme-foreground-muted); margin:0 0 .4rem; }
 </style>

@@ -62,6 +62,7 @@ body { -webkit-font-smoothing:antialiased; }
 .btn { display:inline-block; padding:.5rem .9rem; background:var(--ms); color:#fff !important;
   border-radius:9px; text-decoration:none; font-weight:600; }
 .btn:hover { background:var(--ms-dark); }
+.feature:focus-visible, .btn:focus-visible, a:focus-visible { outline:2px solid var(--ms); outline-offset:2px; border-radius:4px; }
 .pill { background:var(--theme-foreground-faintest); padding:1px 9px; border-radius:999px; font-size:.85em; }
 
 /* notes & source */

@@ -34,10 +34,10 @@ const total = hospitals.features.length;
 </div>
 
 <div class="grid grid-cols-4">
-  <div class="card"><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span></div>
-  <div class="card"><h2>Indicadores de calidad</h2><span class="big">${inclasns.indicators.length}</span><div class="muted">por comunidad</div></div>
-  <div class="card"><h2>Comunidades + provincias</h2><span class="big">17 · 52</span></div>
-  <div class="card"><h2>Fuentes</h2><span class="big">5</span><div class="muted">abiertas, citadas</div></div>
+  <div class="card"><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span><div class="muted">localización (OSM)</div></div>
+  <div class="card"><h2>Indicadores de calidad</h2><span class="big">${inclasns.indicators.length}</span><div class="muted">por comunidad (INCLASNS)</div></div>
+  <div class="card"><h2>Cobertura</h2><span class="big">17 · 52</span><div class="muted">comunidades · provincias</div></div>
+  <div class="card"><h2>Fuentes</h2><span class="big">5</span><div class="muted"><a href="./referencias">abiertas y citadas →</a></div></div>
 </div>
 
 <div class="card" style="padding:.6rem">
@@ -51,19 +51,23 @@ function spainMap(width) {
   const path = d3.geoPath(projection);
   const svg = d3.create("svg")
     .attr("viewBox", [0, 0, width, height]).attr("width", width)
+    .attr("role", "img")
+    .attr("aria-label", `Mapa de España con la localización de ${total.toLocaleString("es-ES")} hospitales. Búscalos en la página Buscar hospital.`)
     .attr("style", "max-width:100%;height:auto;background:transparent;font:10px var(--sans-serif);");
   svg.append("g").selectAll("path").data(provinces.features).join("path")
       .attr("d", path).attr("fill", "var(--theme-foreground-faintest, #eef2f4)").attr("stroke", "none");
   svg.append("path").datum(borders).attr("d", path).attr("fill", "none").attr("stroke", "#c4ccd2").attr("stroke-width", 0.6);
   svg.append("path").attr("d", projection.getCompositionBorders()).attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
-  svg.append("g").attr("fill", "#0b6fb8").attr("fill-opacity", 0.62).attr("stroke", "#fff").attr("stroke-width", 0.3)
+  svg.append("g").attr("fill", "#0b6fb8").attr("fill-opacity", 0.8).attr("stroke", "#fff").attr("stroke-width", 0.35)
     .selectAll("circle").data(hospitals.features.filter(d => projection(d.geometry.coordinates))).join("circle")
-      .attr("transform", d => `translate(${projection(d.geometry.coordinates)})`).attr("r", 2.3)
+      .attr("transform", d => `translate(${projection(d.geometry.coordinates)})`).attr("r", 2.6)
     .append("title").text(d => `${d.properties.name}${d.properties.city ? " — " + d.properties.city : ""}`);
   return svg.node();
 }
 display(resize(width => spainMap(width)));
 ```
+
+<div class="muted" style="font-size:.85rem;margin-top:.3rem">Cada punto es un hospital · pasa el cursor (o toca) para ver el nombre · busca cualquiera en <a href="./buscar">Buscar hospital</a>.</div>
 
 </div>
 
