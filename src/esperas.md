@@ -24,16 +24,31 @@ const sisle = await FileAttachment("data/sisle.json").json();
 const spain = await FileAttachment("data/provincias.json").json();
 const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
 const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
+const qp = (typeof location !== "undefined") ? new URLSearchParams(location.search) : new URLSearchParams();
+const ccaaSel = Mutable(qp.get("ccaa") || null);
+const setCcaa = (c) => { ccaaSel.value = (ccaaSel.value === c ? null : c); };
 ```
 
 <div class="filtros">
 <h2>Indicador</h2>
 
 ```js
-const indicator = view(Inputs.select(sisle.indicators, {label: "Mostrar", format: d => d.name, value: sisle.indicators[0]}));
+const indicator = view(Inputs.select(sisle.indicators, {label: "Mostrar", format: d => d.name, value: sisle.indicators.find(d => d.id === qp.get("ind")) ?? sisle.indicators[0]}));
 ```
 
 </div>
+
+```js
+{
+  const p = new URLSearchParams({ind: indicator.id});
+  if (ccaaSel) p.set("ccaa", ccaaSel);
+  if (typeof history !== "undefined") history.replaceState(null, "", location.pathname + "?" + p.toString());
+}
+```
+
+```js
+display(html`<button class="copylink" onclick=${(e)=>{navigator.clipboard?.writeText(location.href);const b=e.currentTarget,t=b.textContent;b.textContent="Enlace copiado";setTimeout(()=>{b.textContent=t;},1500);}}>Copiar enlace a esta vista</button>`);
+```
 
 ```js
 const vals = indicator.values;
@@ -64,7 +79,10 @@ function mapa(width) {
   svg.append("g").selectAll("path").data(ccaaFeatures.features).join("path")
       .attr("d", path)
       .attr("fill", f => { const v = vals[String(f.id)]; return v == null ? NODATA : colorScale(v); })
-      .attr("stroke", "#fff").attr("stroke-width", 0.7)
+      .attr("stroke", f => String(f.id) === ccaaSel ? "#16222e" : "#fff")
+      .attr("stroke-width", f => String(f.id) === ccaaSel ? 2.4 : 0.7)
+      .style("cursor", "pointer")
+      .on("click", (e, f) => setCcaa(String(f.id)))
     .append("title").text(f => `${f.properties.name}: ${vals[String(f.id)] == null ? "sin datos" : fmtU(vals[String(f.id)])}`);
   svg.append("g").attr("pointer-events", "none").attr("text-anchor", "middle")
       .attr("font-size", Math.max(7, width / 95)).attr("font-weight", 600)
@@ -101,7 +119,7 @@ display((() => {
 ```js
 display((() => {
   const sorted = [...ccaaEntries].sort((a, b) => indicator.betterWhen === "lower" ? a[1] - b[1] : b[1] - a[1]);
-  const rows = sorted.map(([code, v], i) => html`<tr>
+  const rows = sorted.map(([code, v], i) => html`<tr class=${code === ccaaSel ? "rowsel" : ""} style="cursor:pointer" onclick=${() => setCcaa(code)}>
     <td style="text-align:right;color:var(--theme-foreground-muted)">${i + 1}</td>
     <td>${ccaaName.get(code) ?? code}</td>
     <td style="text-align:right;font-variant-numeric:tabular-nums"><b>${fmtN(v)}</b></td>
@@ -137,4 +155,7 @@ comunidad, por lo que los criterios pueden variar entre territorios. Es un dato 
 @media (min-width:680px){ .esperas-split { grid-template-columns:1.5fr 1fr; } }
 .filtros { border:1px solid var(--theme-foreground-faint); border-radius:12px; padding:.7rem 1rem .9rem; margin:.4rem 0 1rem; }
 .filtros > h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--theme-foreground-muted); margin:0 0 .4rem; }
+.copylink { font-family:var(--mono); font-size:.74rem; background:none; border:1px solid var(--line); color:var(--ms); padding:.3rem .7rem; border-radius:6px; cursor:pointer; margin:.2rem 0 .7rem; }
+.copylink:hover { background:var(--ms-soft); }
+.rowsel td { background:#d8ebe9 !important; font-weight:600; }
 </style>

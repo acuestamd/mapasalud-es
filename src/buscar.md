@@ -48,10 +48,25 @@ const hospRows = hospitals.features.map(f => {
 ```
 
 ```js
+const qp = (typeof location !== "undefined") ? new URLSearchParams(location.search) : new URLSearchParams();
+const nameByCode = new Map(hospRows.filter(r => r.ccaaCode).map(r => [r.ccaaCode, r.comunidad]));
+const codeByName = new Map(hospRows.filter(r => r.ccaaCode).map(r => [r.comunidad, r.ccaaCode]));
 const ccaaOptions = ["Todas las comunidades",
   ...Array.from(new Set(hospRows.map(r => r.comunidad))).filter(c => c && c !== "—")
     .sort((a, b) => a.localeCompare(b, "es"))];
-const comunidad = view(Inputs.select(ccaaOptions, {label: "Comunidad autónoma", value: "Todas las comunidades"}));
+const comunidad = view(Inputs.select(ccaaOptions, {label: "Comunidad autónoma", value: nameByCode.get(qp.get("ccaa")) ?? "Todas las comunidades"}));
+```
+
+```js
+{
+  const p = new URLSearchParams();
+  if (comunidad !== "Todas las comunidades" && codeByName.get(comunidad)) p.set("ccaa", codeByName.get(comunidad));
+  if (typeof history !== "undefined") history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p.toString() : ""));
+}
+```
+
+```js
+display(html`<button class="copylink" onclick=${(e)=>{navigator.clipboard?.writeText(location.href);const b=e.currentTarget,t=b.textContent;b.textContent="Enlace copiado";setTimeout(()=>{b.textContent=t;},1500);}}>Copiar enlace a esta vista</button>`);
 ```
 
 ```js
@@ -140,4 +155,6 @@ proceden de OpenStreetMap y solo constan para ~3 de cada 10 hospitales (por eso 
 <style>
 .ficha h2 { margin: 0 0 .25rem; font-size: 1.15rem; }
 .meta { font-size: .9rem; color: var(--theme-foreground-muted); }
+.copylink { font-family:var(--mono); font-size:.74rem; background:none; border:1px solid var(--line); color:var(--ms); padding:.3rem .7rem; border-radius:6px; cursor:pointer; margin:.2rem 0 .7rem; }
+.copylink:hover { background:var(--ms-soft); }
 </style>

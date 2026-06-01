@@ -30,6 +30,9 @@ const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
 const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
 const SEX_LABEL = {mujer: "Mujeres", hombre: "Hombres"};
 const LOW_N = new Set(["18", "19"]); // Ceuta y Melilla: muy pocos casos, cifras inestables
+const qp = (typeof location !== "undefined") ? new URLSearchParams(location.search) : new URLSearchParams();
+const ccaaSel = Mutable(qp.get("ccaa") || null);  // CCAA resaltada (deep-link / clic)
+const setCcaa = (c) => { ccaaSel.value = (ccaaSel.value === c ? null : c); };
 
 // Map INCLASNS indicators onto clinical areas (the "by specialty" dimension that
 // open regional data supports today; per-hospital outcomes await the CMBD request).
@@ -65,7 +68,7 @@ const indOptions = SPECIALTIES[area]
 const indicator = view(Inputs.select(indOptions, {
   label: "Indicador",
   format: d => d.name,
-  value: indOptions[0]
+  value: indOptions.find(d => String(d.id) === qp.get("ind")) ?? indOptions[0]
 }));
 ```
 
@@ -73,7 +76,7 @@ const indicator = view(Inputs.select(indOptions, {
 const sexo = view(Inputs.radio(indicator.sexes, {
   label: "Sexo",
   format: s => SEX_LABEL[s] ?? s,
-  value: indicator.sexes.includes("mujer") ? "mujer" : indicator.sexes[0]
+  value: indicator.sexes.includes(qp.get("sexo")) ? qp.get("sexo") : (indicator.sexes.includes("mujer") ? "mujer" : indicator.sexes[0])
 }));
 ```
 
@@ -81,12 +84,29 @@ const sexo = view(Inputs.radio(indicator.sexes, {
 const yearsAvail = Object.keys(indicator.values[sexo] ?? {}).sort();
 const anio = view(Inputs.select(yearsAvail, {
   label: "Año",
-  value: indicator.latestYear[sexo] ?? yearsAvail[yearsAvail.length - 1]
+  value: yearsAvail.includes(qp.get("anio")) ? qp.get("anio") : (indicator.latestYear[sexo] ?? yearsAvail[yearsAvail.length - 1])
 }));
 ```
 
 </div>
 
+
+```js
+// Sincroniza la URL con la vista (deep-link). replaceState: no rompe el botón "atrás".
+{
+  const p = new URLSearchParams({ind: indicator.id, sexo, anio});
+  if (ccaaSel) p.set("ccaa", ccaaSel);
+  if (typeof history !== "undefined") history.replaceState(null, "", location.pathname + "?" + p.toString());
+}
+```
+
+```js
+display(html`<button class="copylink" onclick=${(e) => {
+  navigator.clipboard?.writeText(location.href);
+  const b = e.currentTarget, t = b.textContent;
+  b.textContent = "Enlace copiado"; setTimeout(() => { b.textContent = t; }, 1500);
+}}>Copiar enlace a esta vista</button>`);
+```
 
 ```js
 const vals = (indicator.values[sexo] ?? {})[anio] ?? {};
@@ -136,9 +156,11 @@ function mapa(width) {
     .data(ccaaFeatures.features).join("path")
       .attr("d", path)
       .attr("fill", f => { const v = vals[String(f.id)]; return v == null ? NODATA : colorScale(v); })
-      .attr("stroke", f => LOW_N.has(String(f.id)) ? "#7a1d12" : "#fff")
-      .attr("stroke-width", f => LOW_N.has(String(f.id)) ? 1.1 : 0.7)
+      .attr("stroke", f => String(f.id) === ccaaSel ? "#16222e" : (LOW_N.has(String(f.id)) ? "#7a1d12" : "#fff"))
+      .attr("stroke-width", f => String(f.id) === ccaaSel ? 2.4 : (LOW_N.has(String(f.id)) ? 1.1 : 0.7))
       .attr("stroke-dasharray", f => LOW_N.has(String(f.id)) ? "3,2" : null)
+      .style("cursor", "pointer")
+      .on("click", (e, f) => setCcaa(String(f.id)))
     .append("title")
       .text(f => { const v = vals[String(f.id)]; const ln = LOW_N.has(String(f.id)) ? " · bajo N (poco fiable)" : "";
         return `${f.properties.name}: ${v == null ? "sin datos" : fmtN(v)}${ln}`; });
@@ -199,7 +221,7 @@ display((() => {
 display((() => {
   const sorted = [...ccaaEntries].sort((a, b) =>
     indicator.betterWhen === "lower" ? a[1] - b[1] : b[1] - a[1]);
-  const rows = sorted.map(([code, v], i) => html`<tr>
+  const rows = sorted.map(([code, v], i) => html`<tr class=${code === ccaaSel ? "rowsel" : ""} style="cursor:pointer" onclick=${() => setCcaa(code)}>
     <td style="text-align:right;color:var(--theme-foreground-muted)">${i + 1}</td>
     <td>${ccaaName.get(code) ?? code}${LOW_N.has(code) ? html` <span class="lown">bajo N</span>` : ""}</td>
     <td style="text-align:right;font-variant-numeric:tabular-nums"><b>${fmtN(v)}</b></td>
@@ -253,4 +275,7 @@ validada de la calidad de un profesional. Metodología y fuentes:
 @media (min-width:680px){ .calidad-split { grid-template-columns:1.5fr 1fr; } }
 .filtros { border:1px solid var(--theme-foreground-faint); border-radius:12px; padding:.7rem 1rem .9rem; margin:.4rem 0 1rem; }
 .filtros > h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--theme-foreground-muted); margin:0 0 .4rem; }
+.copylink { font-family:var(--mono); font-size:.74rem; background:none; border:1px solid var(--line); color:var(--ms); padding:.3rem .7rem; border-radius:6px; cursor:pointer; margin:.2rem 0 .7rem; }
+.copylink:hover { background:var(--ms-soft); }
+.rowsel td { background:#d8ebe9 !important; font-weight:600; }
 </style>
