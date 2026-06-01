@@ -36,12 +36,16 @@ jobs:
           python3 scripts/fetch_sisle.py
       - name: Validate data schema
         run: python -m pytest -q
+      - name: Regenerate sharecards (Plex via headless Chrome)
+        run: |
+          export CHROME_PATH="$(which google-chrome || which google-chrome-stable || echo /usr/bin/google-chrome)"
+          node scripts/gen_sharecards.mjs
       - name: Commit if changed
         run: |
-          if [ -n "$(git status --porcelain data-raw src/data)" ]; then
+          if [ -n "$(git status --porcelain data-raw src/data src/sharecards)" ]; then
             git config user.name "Armando Cuesta"
             git config user.email "acuesta@me.com"
-            git add data-raw src/data
+            git add data-raw src/data src/sharecards
             git commit -m "data: refresh hospital snapshot ($(date -u +%Y-%m-%d))"
             git push
           else

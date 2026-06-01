@@ -78,14 +78,15 @@ body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;backg
 </body></html>`;
 }
 
-const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+// En CI (Linux) se pasa CHROME_PATH=/usr/bin/google-chrome; en local usa Chrome de macOS.
+const CHROME = process.env.CHROME_PATH || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 function render(code, outPng) {
   const html = cardHTML(code);
   const tmp = path.join(os.tmpdir(), `card-${code}.html`);
   fs.writeFileSync(tmp, html);
   execFileSync(CHROME, [
-    "--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=1",
-    "--window-size=1200,630", "--default-background-color=00000000",
+    "--headless=new", "--disable-gpu", "--no-sandbox", "--hide-scrollbars",
+    "--force-device-scale-factor=1", "--window-size=1200,630", "--default-background-color=00000000",
     `--screenshot=${outPng}`, `file://${tmp}`,
   ], { stdio: "ignore" });
 }
