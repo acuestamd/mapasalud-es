@@ -67,7 +67,7 @@ body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:a
 .hero-band .badge { font-family:var(--mono); background:none; padding:0; color:var(--ms); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; font-weight:500; }
 
 /* índice de secciones — sustituye las tarjetas con emoji por una lista editorial */
-.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 1.6rem; margin:1.5rem 0; border-top:1px solid var(--ink); }
+.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 1.6rem; margin:1.5rem 0; border-top:1px solid var(--line); }
 .feature { display:flex; flex-direction:column; padding:1.05rem 0 1.1rem; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:opacity .15s; }
 .feature:hover { opacity:.62; }
 .feature .ic { font-family:var(--mono); font-size:.78rem; color:var(--ms); letter-spacing:.08em; margin-bottom:.5rem; }
@@ -77,8 +77,7 @@ body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:a
 
 /* cifras grandes en monoespaciada */
 .statrow { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:1.5rem 0; }
-.statrow > div { padding:.9rem 1.1rem .9rem 0; border-right:1px solid var(--line); }
-.statrow > div:last-child { border-right:none; }
+.statrow > div { padding:.9rem 1.4rem .9rem 0; }
 .big { font-family:var(--mono); font-size:1.9rem; font-weight:500; line-height:1; display:block; color:var(--ink); font-variant-numeric:tabular-nums; }
 .statrow h2 { font-family:var(--mono); font-size:.68rem; font-weight:500; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 .5rem; }
 
@@ -91,7 +90,6 @@ body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:a
 /* tablas construidas a mano dentro de .card — estilo editorial */
 .card table { font-variant-numeric:tabular-nums; width:100%; }
 .card table thead th { font-family:var(--mono); color:var(--muted); font-weight:500; font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--ink); padding-bottom:.35rem; }
-.card table tbody tr { border-bottom:1px solid var(--line); }
 .card table tbody tr:hover { background:var(--ms-soft); }
 .card table td, .card table th { padding:.32rem .45rem; }
 
