@@ -27,13 +27,37 @@ import {geoConicConformalSpain} from "npm:d3-composite-projections";
 const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
 const ccaaName = new Map(ccaaFeatures.features.map(f => [String(f.id), f.properties.name]));
 const SEX_LABEL = {total: "Total", mujer: "Mujeres", hombre: "Hombres"};
+
+// Map INCLASNS indicators onto clinical areas (the "by specialty" dimension that
+// open regional data supports today; per-hospital outcomes await the CMBD request).
+const SPECIALTIES = {
+  "Todas las áreas": null,
+  "Cardiología": [129, 127],
+  "Traumatología y ortopedia": [128, 119, 121],
+  "Neurología (ictus)": [332, 331],
+  "Neumología / respiratorio": [132],
+  "Cirugía general y digestiva": [114, 91, 337],
+  "Endocrinología / diabetes": [133, 330],
+  "Seguridad del paciente": [121, 337, 133],
+  "Visión global": [125],
+};
 ```
 
 ```js
-const indicator = view(Inputs.select(inclasns.indicators, {
+const area = view(Inputs.select(Object.keys(SPECIALTIES), {
+  label: "Área clínica / especialidad",
+  value: "Todas las áreas"
+}));
+```
+
+```js
+const indOptions = SPECIALTIES[area]
+  ? inclasns.indicators.filter(d => SPECIALTIES[area].includes(d.id))
+  : inclasns.indicators;
+const indicator = view(Inputs.select(indOptions, {
   label: "Indicador",
   format: d => d.name,
-  value: inclasns.indicators[0]
+  value: indOptions[0]
 }));
 ```
 

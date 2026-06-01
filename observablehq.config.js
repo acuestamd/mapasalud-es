@@ -3,6 +3,7 @@ export default {
   title: "MapaSalud",
   pages: [
     {name: "Hospitales", path: "/index"},
+    {name: "Buscar hospital", path: "/buscar"},
     {name: "Calidad por región", path: "/calidad"},
     {name: "Verificar un médico", path: "/verificacion"},
     {name: "Referencias", path: "/referencias"},

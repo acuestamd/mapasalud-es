@@ -24,6 +24,12 @@ closed and survey-based. Spain *does* publish the raw material under an open lic
   avoidable diabetic admissions), and process measures (hip-fracture surgery <48h, ambulatory
   surgery, laparoscopic cholecystectomy) — choropleth + ranking, every figure linked to its
   source (datos de base CMBD/i-CMBD).
+- ✅ **By specialty**: a clinical-area filter on the quality map (Cardiología, Traumatología,
+  Neurología/ictus, Neumología, Cirugía, Endocrino/diabetes, Seguridad del paciente) that
+  narrows the indicators to that area.
+- ✅ **Per-hospital search** (`/buscar`): search all 1,025 hospitals; each is matched to its
+  autonomous community by point-in-polygon, and its community's quality indicators are shown
+  as context (per-hospital outcomes flagged as pending the CMBD request).
 - ✅ **References**: cite-only links to external benchmarks (Newsweek/Statista, IQVIA TOP 20,
   Merco MRS, IDIS) and official open sources — never reproduced.
 - ✅ **Doctor credential verification** — link-out to CGCOM colegiado + REPS (no scraping,
