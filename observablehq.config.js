@@ -98,7 +98,12 @@ body { font-family:var(--sans-serif); color:var(--ink); -webkit-font-smoothing:a
 .note b { color:var(--ink); }
 .src { font-family:var(--mono); max-width:52rem; font-size:.74rem; color:var(--muted); margin-top:.5rem; letter-spacing:.01em; }
 td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:600; }
-</style>
+/* objetivos táctiles en móvil (font-size 16 evita el zoom en iOS) */
+@media (max-width:680px){
+  select { min-height:42px; font-size:16px; }
+  input[type=radio], input[type=checkbox] { transform:scale(1.25); margin:.25rem; }
+  .copylink, .btn { min-height:40px; display:inline-flex; align-items:center; }
+}
 <script type="application/ld+json">${JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Dataset",

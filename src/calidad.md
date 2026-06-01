@@ -188,7 +188,7 @@ function mapa(width) {
 
   svg.append("path").attr("d", projection.getCompositionBorders())
       .attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
-  svg.append("text").attr("x", 1).attr("y", height - 3).attr("font-size", 9).attr("fill", "#7a8a96")
+  svg.append("text").attr("x", 1).attr("y", height - 3).attr("font-size", 9).attr("fill", "#5a6b78")
      .text("Tasas crudas · no ajustadas por riesgo · no es un ranking · Fuente: M. Sanidad/INCLASNS · MapaSalud");
   return svg.node();
 }

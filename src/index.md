@@ -20,7 +20,10 @@ head: '<link rel="canonical" href="https://mapasalud-es.vercel.app/"><meta prope
   buscador de hospitales y verificación de colegiación. Abierto, citado y sin ánimo de lucro.</p>
 </div>
 
+<div class="ejes muted">Medimos <b>acceso</b> (esperas) y <b>resultado</b> (mortalidad, tasas crudas), no reputación · por comunidad, no por hospital. <a href="./metodologia">Qué mide cada cosa →</a></div>
+
 <style>
+.ejes { font-size:.9rem; margin:.2rem 0 1rem; }
 .brand { display:flex; align-items:center; gap:.6rem; margin-bottom:1.1rem; }
 .brand-mark { width:30px; height:30px; flex:none; }
 .brand-name { font-weight:700; font-size:1.18rem; letter-spacing:-.01em; }

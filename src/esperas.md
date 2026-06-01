@@ -104,7 +104,7 @@ function mapa(width) {
       .attr("fill", "#1a1a1a").attr("stroke", "#fff").attr("stroke-width", Math.max(1.6, width / 520)).attr("paint-order", "stroke")
       .text(f => fmtN(vals[String(f.id)]));
   svg.append("path").attr("d", projection.getCompositionBorders()).attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
-  svg.append("text").attr("x", 1).attr("y", height - 3).attr("font-size", 9).attr("fill", "#7a8a96")
+  svg.append("text").attr("x", 1).attr("y", height - 3).attr("font-size", 9).attr("fill", "#5a6b78")
      .text("Listas de espera quirúrgica · Fuente: SISLE-SNS, M. Sanidad · MapaSalud");
   return svg.node();
 }

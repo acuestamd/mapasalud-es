@@ -130,7 +130,7 @@ function fichaRegional(code) {
 }
 
 function ficha(h) {
-  if (!h) return html`<div class="muted">Marca un hospital en la tabla (casilla izquierda) para ver su ficha.</div>`;
+  if (!h) return html`<div class="muted">Marca un hospital (casilla izquierda) para ver el <b>contexto de calidad de su comunidad</b>. El detalle por centro llegará con los microdatos CMBD; hoy MapaSalud localiza el hospital y lo sitúa en los indicadores de su comunidad.</div>`;
   return html`<div class="ficha card">
     <h2>${h.nombre}</h2>
     <div class="meta">${[h.municipio, h.comunidad].filter(Boolean).join(" · ")}
