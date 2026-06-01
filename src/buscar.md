@@ -86,13 +86,27 @@ const buscados = view(Inputs.search(baseRows, {
 ```
 
 ```js
-const seleccion = view(Inputs.table(buscados, {
-  columns: ["nombre", "provincia", "comunidad", "titularidad", "urgencias"],
-  header: {nombre: "Hospital", provincia: "Provincia", comunidad: "Comunidad", titularidad: "Titularidad", urgencias: "Urgencias"},
-  required: false,
-  rows: 13,
-  width: {nombre: 300}
-}));
+const selH = Mutable(null);
+const setSelH = (h) => { selH.value = h; };
+```
+
+```js
+display((() => {
+  const items = buscados.slice(0, 80);
+  return html`<div>
+    <div class="hlist" role="listbox" aria-label="Hospitales">
+      ${items.map(h => html`<button class="hitem" type="button" role="option" aria-selected=${selH === h} onclick=${() => setSelH(h)}>
+        <span class="hn">${h.nombre}</span>
+        <span class="hmeta">${[h.provincia, h.comunidad].filter(x => x && x !== "—").join(" · ")}${h.titularidad !== "—" ? " · " + h.titularidad : ""}${h.urgencias === "Sí" ? " · Urgencias" : ""}</span>
+      </button>`)}
+    </div>
+    ${buscados.length === 0
+      ? html`<div class="muted" style="margin-top:.5rem">Ningún hospital coincide con la búsqueda.</div>`
+      : buscados.length > items.length
+        ? html`<div class="muted" style="font-size:.8rem;margin-top:.4rem">Mostrando ${items.length} de ${buscados.length.toLocaleString("es-ES")} — afina con el buscador o los filtros.</div>`
+        : ""}
+  </div>`;
+})());
 ```
 
 ```js
@@ -147,7 +161,7 @@ function ficha(h) {
   </div>`;
 }
 
-display(ficha(Array.isArray(seleccion) ? seleccion[seleccion.length - 1] : seleccion));
+display(ficha(selH));
 ```
 
 <div class="note">
@@ -166,4 +180,11 @@ proceden de OpenStreetMap y solo constan para ~3 de cada 10 hospitales (por eso 
 .meta { font-size: .9rem; color: var(--theme-foreground-muted); }
 .copylink { font-family:var(--mono); font-size:.74rem; background:none; border:1px solid var(--line); color:var(--ms); padding:.3rem .7rem; border-radius:6px; cursor:pointer; margin:.2rem 0 .7rem; }
 .copylink:hover { background:var(--ms-soft); }
+.hlist { display:flex; flex-direction:column; border-top:1px solid var(--line); max-height:520px; overflow-y:auto; }
+.hitem { text-align:left; background:none; border:none; border-bottom:1px solid var(--line); padding:.6rem .4rem; min-height:44px; cursor:pointer; display:flex; flex-direction:column; gap:.15rem; width:100%; font:inherit; color:inherit; }
+.hitem:hover, .hitem[aria-selected="true"] { background:var(--ms-soft); }
+.hitem[aria-selected="true"] { box-shadow:inset 3px 0 var(--ms); }
+.hitem:focus-visible { outline:2px solid var(--ms); outline-offset:-2px; }
+.hitem .hn { font-weight:600; }
+.hitem .hmeta { font-size:.82rem; color:var(--muted); }
 </style>
