@@ -21,6 +21,7 @@ LANDING = "https://www.sanidad.gob.es/estadEstudios/estadisticas/inforRecopilaci
 FALLBACK_URL = "https://www.sanidad.gob.es/estadEstudios/estadisticas/inforRecopilaciones/docs/LISTAS_PUBLICACION_Dic_2025.pdf"
 PDF = pathlib.Path("data-raw/sisle.pdf")
 OUT = pathlib.Path("src/data/sisle.json")
+HIST = pathlib.Path("src/data/sisle-history.json")
 UA = "mapasalud-es/0.4 (open hospital map of Spain; github.com/acuestamd)"
 
 KEYMAP = [
@@ -151,6 +152,13 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
     print(f"wrote {OUT}: {len(dias)-1} CCAA + total · {version} · nacional {dias['ES']} días")
+
+    # Histórico: acumula cada informe por versión (se amplía con cada publicación semestral).
+    hist = json.loads(HIST.read_text()) if HIST.exists() else {
+        "title": "Histórico SISLE por versión (espera quirúrgica)", "periods": {}}
+    hist["periods"][version] = {"espera_dias": dias, "pct_mas_6m": pct6m, "tasa_1000": tasa}
+    HIST.write_text(json.dumps(hist, ensure_ascii=False, indent=1) + "\n")
+    print(f"histórico: {len(hist['periods'])} periodo(s) en {HIST}")
 
 
 if __name__ == "__main__":
