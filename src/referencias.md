@@ -67,11 +67,4 @@ incorrecta, abre una incidencia en el [repositorio](https://github.com/acuestamd
 
 </div>
 
-<style>
-.hero { font-size: 1.05rem; max-width: 54rem; }
-.muted { color: var(--theme-foreground-muted); font-size: 0.9rem; }
-.btn { display:inline-block; padding: 0.45rem 0.85rem; background:#0b6fb8; color:#fff !important; border-radius:8px; text-decoration:none; font-weight:600; }
-.btn:hover { background:#095a96; }
-.card h2 { margin-top: 0; font-size: 1.05rem; }
-.note { max-width: 54rem; border-left: 3px solid #0b6fb8; padding-left: 1rem; margin-top: 1.25rem; font-size: 0.9rem; }
-</style>
+<style>.card h2 { font-size: 1.05rem; }</style>

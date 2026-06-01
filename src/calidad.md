@@ -188,9 +188,4 @@ Metodología y fuentes: [`DATA-LICENSES.md`](https://github.com/acuestamd/mapasa
 
 </div>
 
-<style>
-.hero { font-size: 1.05rem; max-width: 54rem; }
-.muted { color: var(--theme-foreground-muted); font-size: 0.85rem; }
-.src { max-width: 54rem; font-size: 0.85rem; color: var(--theme-foreground-muted); margin-top: 0.5rem; }
-.note { max-width: 54rem; border-left: 3px solid #0b6fb8; padding-left: 1rem; margin-top: 1.25rem; font-size: 0.92rem; }
-</style>
+<style>.src { font-size: 0.85rem; }</style>

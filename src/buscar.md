@@ -145,11 +145,6 @@ proceden de OpenStreetMap y pueden faltar. **No es consejo médico.**
 </div>
 
 <style>
-.hero { font-size: 1.05rem; max-width: 54rem; }
-.muted { color: var(--theme-foreground-muted); font-size: 0.9rem; }
 .ficha h2 { margin: 0 0 .25rem; font-size: 1.15rem; }
 .meta { font-size: .9rem; color: var(--theme-foreground-muted); }
-.pill { background: var(--theme-foreground-faintest); padding: 1px 8px; border-radius: 10px; }
-td.good { color: #137333; font-weight: 600; } td.bad { color: #b3261e; font-weight: 600; }
-.note { max-width: 54rem; border-left: 3px solid #0b6fb8; padding-left: 1rem; margin-top: 1.25rem; font-size: 0.9rem; }
 </style>

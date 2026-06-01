@@ -60,12 +60,4 @@ y provincia— existe el dato abierto de
 
 </div>
 
-<style>
-.hero { font-size: 1.05rem; max-width: 52rem; }
-.muted { color: var(--theme-foreground-muted); }
-.copy { margin: 0.5rem 0 1rem; padding: 0.6rem 0.9rem; background: var(--theme-foreground-faintest); border-radius: 8px; }
-.btn { display:inline-block; padding: 0.5rem 0.9rem; background:#0b6fb8; color:#fff !important; border-radius:8px; text-decoration:none; font-weight:600; }
-.btn:hover { background:#095a96; }
-.note { max-width: 52rem; border-left: 3px solid #0b6fb8; padding-left: 1rem; margin-top: 1.5rem; }
-.card h2 { margin-top: 0; }
-</style>
+<style>.copy { margin: 0.5rem 0 1rem; padding: 0.6rem 0.9rem; background: var(--theme-foreground-faintest); border-radius: 8px; }</style>

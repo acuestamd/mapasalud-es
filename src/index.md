@@ -3,15 +3,11 @@ title: Hospitales de España
 toc: false
 ---
 
-# 🏥 MapaSalud — Hospitales de España
-
-<div class="hero">
-
-Mapa abierto y **trazable a su fuente** del sistema hospitalario español.
-Esta versión (**v0.1**) muestra la **localización** de los hospitales; los
-**indicadores de calidad por especialidad** (i-CMBD, INCLASNS) y el cruce con el
-**Catálogo Nacional de Hospitales** están en integración.
-
+<div class="hero-band">
+  <span class="badge">Datos abiertos · sin ánimo de lucro</span>
+  <h1>🏥 MapaSalud</h1>
+  <p>El mapa abierto de los hospitales de España: calidad <b>con su fuente</b>, no opiniones.
+  Indicadores por comunidad (INCLASNS / CMBD), buscador de hospitales y verificación de colegiación.</p>
 </div>
 
 ```js
@@ -21,86 +17,63 @@ import {geoConicConformalSpain} from "npm:d3-composite-projections";
 
 const hospitals = await FileAttachment("data/hospitals.geojson").json();
 const spain = await FileAttachment("data/provincias.json").json();
-```
-
-```js
+const inclasns = await FileAttachment("data/inclasns.json").json();
 const total = hospitals.features.length;
 ```
 
-<div class="grid grid-cols-3">
-  <div class="card"><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span></div>
-  <div class="card"><h2>Provincias</h2><span class="big">52</span></div>
-  <div class="card"><h2>Fuente de localización</h2><span class="big">OSM</span><div class="muted">© OpenStreetMap (ODbL)</div></div>
+<div class="features">
+  <a class="feature" href="./buscar"><div class="ic">🔎</div><h3>Buscar hospital</h3>
+    <p>Encuentra cualquier hospital y mira los indicadores de calidad de su comunidad.</p>
+    <span class="go">Buscar →</span></a>
+  <a class="feature" href="./calidad"><div class="ic">📊</div><h3>Calidad por región</h3>
+    <p>Mortalidad, seguridad y procesos por comunidad y por área clínica, con su fuente.</p>
+    <span class="go">Ver indicadores →</span></a>
+  <a class="feature" href="./verificacion"><div class="ic">🩺</div><h3>Verificar un médico</h3>
+    <p>Comprueba la colegiación oficial de un facultativo. No es un ranking.</p>
+    <span class="go">Verificar →</span></a>
 </div>
+
+<div class="grid grid-cols-4">
+  <div class="card"><h2>Hospitales mapeados</h2><span class="big">${total.toLocaleString("es-ES")}</span></div>
+  <div class="card"><h2>Indicadores de calidad</h2><span class="big">${inclasns.indicators.length}</span><div class="muted">por comunidad</div></div>
+  <div class="card"><h2>Comunidades + provincias</h2><span class="big">17 · 52</span></div>
+  <div class="card"><h2>Fuentes</h2><span class="big">5</span><div class="muted">abiertas, citadas</div></div>
+</div>
+
+<div class="card" style="padding:.6rem">
 
 ```js
 function spainMap(width) {
-  const height = Math.round(width * 0.6);
+  const height = Math.round(width * 0.56);
   const provinces = topojson.feature(spain, spain.objects.provinces);
   const borders = topojson.mesh(spain, spain.objects.provinces, (a, b) => a !== b);
-
   const projection = geoConicConformalSpain().fitSize([width, height], provinces);
   const path = d3.geoPath(projection);
-
   const svg = d3.create("svg")
-    .attr("viewBox", [0, 0, width, height])
-    .attr("width", width)
+    .attr("viewBox", [0, 0, width, height]).attr("width", width)
     .attr("style", "max-width:100%;height:auto;background:transparent;font:10px var(--sans-serif);");
-
-  // Provincia fills (neutral) + internal borders
-  svg.append("g")
-    .selectAll("path").data(provinces.features).join("path")
+  svg.append("g").selectAll("path").data(provinces.features).join("path")
       .attr("d", path).attr("fill", "var(--theme-foreground-faintest, #eef2f4)").attr("stroke", "none");
-  svg.append("path").datum(borders)
-      .attr("d", path).attr("fill", "none").attr("stroke", "#c4ccd2").attr("stroke-width", 0.6);
-
-  // Composition border = Canary Islands inset frame (right from day one)
-  svg.append("path")
-      .attr("d", projection.getCompositionBorders())
-      .attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
-
-  // Hospital points
-  svg.append("g")
-      .attr("fill", "#0b6fb8").attr("fill-opacity", 0.65)
-      .attr("stroke", "#fff").attr("stroke-width", 0.3)
-    .selectAll("circle")
-    .data(hospitals.features.filter(d => projection(d.geometry.coordinates)))
-    .join("circle")
-      .attr("transform", d => `translate(${projection(d.geometry.coordinates)})`)
-      .attr("r", 2.3)
-    .append("title")
-      .text(d => `${d.properties.name}${d.properties.city ? " — " + d.properties.city : ""}`);
-
+  svg.append("path").datum(borders).attr("d", path).attr("fill", "none").attr("stroke", "#c4ccd2").attr("stroke-width", 0.6);
+  svg.append("path").attr("d", projection.getCompositionBorders()).attr("fill", "none").attr("stroke", "#9aa6ad").attr("stroke-width", 0.8);
+  svg.append("g").attr("fill", "#0b6fb8").attr("fill-opacity", 0.62).attr("stroke", "#fff").attr("stroke-width", 0.3)
+    .selectAll("circle").data(hospitals.features.filter(d => projection(d.geometry.coordinates))).join("circle")
+      .attr("transform", d => `translate(${projection(d.geometry.coordinates)})`).attr("r", 2.3)
+    .append("title").text(d => `${d.properties.name}${d.properties.city ? " — " + d.properties.city : ""}`);
   return svg.node();
 }
+display(resize(width => spainMap(width)));
 ```
 
-<div class="card map-card">
-  ${resize((width) => spainMap(width))}
 </div>
 
 <div class="note">
 
-**Estado y método.** v0.1 es una capa de **localización** sembrada desde OpenStreetMap
-(real, con coordenadas, licencia ODbL). La hoja de ruta —cada número enlazado a su
-fuente primaria y versión— es:
-
-1. Cruce con el **Catálogo Nacional de Hospitales** (registro oficial, RD 1495/2011).
-2. **INCLASNS** — mortalidad hospitalaria por proceso, por CCAA (API + descarga masiva).
-3. **i-CMBD** — indicadores ajustados por riesgo (GRD-APR): mortalidad, reingresos,
-   infección, complicaciones, estancia, volumen quirúrgico.
-4. **SISLE** — listas de espera por especialidad.
-5. **Verificación de médicos** (no ranking): enlace al colegiado oficial (CGCOM) y REPS.
-
-Sin valoraciones opacas. Sin *scraping* de reseñas. Estrictamente no comercial.
-Ver [`DATA-LICENSES.md`](https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md).
+**Qué es esto.** Un proyecto abierto (MIT) que reúne datos públicos del sistema hospitalario
+español en un mapa, **enlazando cada cifra a su fuente**. La capa de localización parte de
+OpenStreetMap; la de calidad, de INCLASNS (datos de base CMBD/i-CMBD). Los datos **por hospital
+y por especialidad** llegarán con la solicitud de microdatos CMBD (en trámite); de momento la
+calidad se muestra **por comunidad autónoma**. Sin valoraciones opacas, sin *scraping* de reseñas,
+estrictamente no comercial. **No es consejo médico.**
 
 </div>
-
-<style>
-.hero { font-size: 1.05rem; max-width: 52rem; }
-.big { font-size: 2.2rem; font-weight: 700; line-height: 1; display:block; }
-.muted { color: var(--theme-foreground-muted); font-size: 0.8rem; }
-.map-card { padding: 0.5rem; }
-.note { max-width: 52rem; border-left: 3px solid #0b6fb8; padding-left: 1rem; margin-top: 1.5rem; }
-</style>

@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf src/.observablehq/cache",
-    "build": "observable build",
+    "build": "observable build && cp src/og.png dist/og.png",
     "dev": "observable preview",
     "deploy": "observable deploy",
     "data": "python3 scripts/fetch_osm_hospitals.py && python3 scripts/normalize_osm_hospitals.py && python3 scripts/fetch_inclasns.py"
