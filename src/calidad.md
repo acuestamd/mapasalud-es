@@ -24,6 +24,7 @@ const spain = await FileAttachment("data/provincias.json").json();
 ```js
 import * as topojson from "npm:topojson-client";
 import * as d3 from "npm:d3";
+import * as Plot from "npm:@observablehq/plot";
 import {geoConicConformalSpain} from "npm:d3-composite-projections";
 
 const ccaaFeatures = topojson.feature(spain, spain.objects.autonomous_regions);
@@ -251,6 +252,34 @@ display((() => {
 ```
 </div>
 </div>
+
+```js
+// Serie temporal: evolución del indicador por año (CCAA seleccionada vs España)
+display((() => {
+  const byYear = indicator.values[sexo] ?? {};
+  const series = [];
+  for (const [y, m] of Object.entries(byYear)) {
+    if (m.ES != null) series.push({anio: +y, valor: m.ES, serie: "España"});
+    if (ccaaSel && m[ccaaSel] != null) series.push({anio: +y, valor: m[ccaaSel], serie: ccaaName.get(ccaaSel)});
+  }
+  if (series.length < 4) return html``;
+  const dom = ccaaSel ? [ccaaName.get(ccaaSel), "España"] : ["España"];
+  return html`<div class="card" style="margin-top:1rem;padding:1rem">
+    <div class="vizhead" style="margin-bottom:.3rem">Evolución por año${ccaaSel ? " · " + ccaaName.get(ccaaSel) + " vs España" : " · España"}</div>
+    ${resize((width) => Plot.plot({
+      width, height: 240, marginLeft: 46, marginRight: 12,
+      x: {tickFormat: "d", label: null}, y: {grid: true, label: null},
+      color: {legend: true, domain: dom, range: ["#0c6b73", "#9aa6ad"]},
+      marks: [
+        Plot.lineY(series, {x: "anio", y: "valor", stroke: "serie", strokeWidth: 2, curve: "monotone-x"}),
+        Plot.dot(series, {x: "anio", y: "valor", stroke: "serie", fill: "white", r: 2.4}),
+        Plot.tip(series, Plot.pointer({x: "anio", y: "valor", stroke: "serie", title: d => `${d.serie} ${d.anio}: ${fmtN(d.valor)}`}))
+      ]
+    }))}
+    <div class="muted" style="font-size:.8rem;margin-top:.3rem">Selecciona una comunidad (clic en el mapa o la tabla) para compararla con España. ${SEX_LABEL[sexo] ?? sexo}, tasas crudas. Fuente: INCLASNS.</div>
+  </div>`;
+})());
+```
 
 ```js
 display(html`<div class="src">

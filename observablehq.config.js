@@ -14,6 +14,7 @@ export default {
     {name: "Calidad por región", path: "/calidad"},
     {name: "Listas de espera", path: "/esperas"},
     {name: "Verificar un médico", path: "/verificacion"},
+    {name: "Datos abiertos", path: "/datos"},
     {name: "Referencias", path: "/referencias"},
   ],
   head: `
