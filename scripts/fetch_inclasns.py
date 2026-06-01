@@ -31,6 +31,11 @@ INDICATORS = {
     332: ("Mortalidad intrahospitalaria por ictus isquémico (por 100 altas)", "lower"),
     119: ("Fractura de cadera intervenida en las primeras 48 h (%)", "higher"),
     91: ("Cirugía ambulatoria en el SNS (%)", "higher"),
+    114: ("Colecistectomía por laparoscopia (%)", "higher"),
+    121: ("Fractura de cadera en pacientes ingresados (seguridad del paciente)", "lower"),
+    133: ("Amputación de miembro inferior en personas con diabetes", "lower"),
+    330: ("Hospitalización por complicaciones agudas de la diabetes", "lower"),
+    337: ("Sepsis postquirúrgica", "lower"),
 }
 
 # INCLASNS area slug -> INE autonomous-community code (matches es-atlas geometry id).

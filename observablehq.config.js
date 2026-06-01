@@ -5,6 +5,7 @@ export default {
     {name: "Hospitales", path: "/index"},
     {name: "Calidad por región", path: "/calidad"},
     {name: "Verificar un médico", path: "/verificacion"},
+    {name: "Referencias", path: "/referencias"},
   ],
   // Boundaries-only, key-free basemap; no external tile provider.
   head: '<meta name="color-scheme" content="light dark">',

@@ -18,10 +18,14 @@ closed and survey-based. Spain *does* publish the raw material under an open lic
 - ✅ **Locations**: 1,025+ hospitals seeded from OpenStreetMap (real coordinates, ODbL).
 - ✅ **Base map**: provinces/CCAA from the Instituto Geográfico Nacional (CC-BY), rendered
   with `geoConicConformalSpain` so the **Canary Islands sit in an inset** from day one.
-- ✅ **Quality by region**: 9 INCLASNS indicators by autonomous community — condition-specific
-  in-hospital mortality (AMI, hip fracture, angioplasty, pneumonia, stroke), hip-fracture
-  surgery within 48h, and ambulatory surgery — as a choropleth + ranking, every figure
-  linked to its source (datos de base CMBD/i-CMBD).
+- ✅ **Quality by region**: 14 INCLASNS indicators by autonomous community — condition-specific
+  in-hospital mortality (AMI, hip fracture, angioplasty, pneumonia, stroke), patient-safety
+  (in-hospital hip fractures, post-surgical sepsis, lower-limb amputation in diabetics,
+  avoidable diabetic admissions), and process measures (hip-fracture surgery <48h, ambulatory
+  surgery, laparoscopic cholecystectomy) — choropleth + ranking, every figure linked to its
+  source (datos de base CMBD/i-CMBD).
+- ✅ **References**: cite-only links to external benchmarks (Newsweek/Statista, IQVIA TOP 20,
+  Merco MRS, IDIS) and official open sources — never reproduced.
 - ✅ **Doctor credential verification** — link-out to CGCOM colegiado + REPS (no scraping,
   no scores).
 - ✅ **Self-running**: data fetch + normalize scripts; GitHub Actions refreshes the
