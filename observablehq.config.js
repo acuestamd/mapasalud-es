@@ -13,6 +13,7 @@ export default {
     {name: "Buscar hospital", path: "/buscar"},
     {name: "Calidad por región", path: "/calidad"},
     {name: "Listas de espera", path: "/esperas"},
+    {name: "Comparar comunidades", path: "/comparar"},
     {name: "Verificar un médico", path: "/verificacion"},
     {name: "Datos abiertos", path: "/datos"},
     {name: "Referencias", path: "/referencias"},

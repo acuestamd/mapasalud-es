@@ -4,6 +4,7 @@
   <url><loc>https://mapasalud-es.vercel.app/buscar</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://mapasalud-es.vercel.app/calidad</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://mapasalud-es.vercel.app/esperas</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://mapasalud-es.vercel.app/comparar</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://mapasalud-es.vercel.app/verificacion</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://mapasalud-es.vercel.app/datos</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://mapasalud-es.vercel.app/referencias</loc><changefreq>monthly</changefreq></url>

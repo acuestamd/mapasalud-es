@@ -40,6 +40,7 @@ const hospRows = hospitals.features.map(f => {
     municipio: p.city || "",
     comunidad: p.ccaaName || "—",
     ccaaCode: p.ccaa || null,
+    provincia: p.provinciaName || "—",
     titularidad: tipoOf(p.operator_type),
     urgencias: p.emergency === "yes" ? "Sí" : (p.emergency === "no" ? "No" : "—"),
     web: p.website || "",
@@ -70,18 +71,24 @@ display(html`<button class="copylink" onclick=${(e)=>{navigator.clipboard?.write
 ```
 
 ```js
-const baseRows = comunidad === "Todas las comunidades"
-  ? hospRows : hospRows.filter(r => r.comunidad === comunidad);
+const trasCcaa = comunidad === "Todas las comunidades" ? hospRows : hospRows.filter(r => r.comunidad === comunidad);
+const provOptions = ["Todas las provincias",
+  ...Array.from(new Set(trasCcaa.map(r => r.provincia))).filter(p => p && p !== "—").sort((a, b) => a.localeCompare(b, "es"))];
+const provincia = view(Inputs.select(provOptions, {label: "Provincia", value: "Todas las provincias"}));
+```
+
+```js
+const baseRows = provincia === "Todas las provincias" ? trasCcaa : trasCcaa.filter(r => r.provincia === provincia);
 const buscados = view(Inputs.search(baseRows, {
   placeholder: `Buscar entre ${baseRows.length.toLocaleString("es-ES")} hospitales…`,
-  columns: ["nombre", "municipio", "comunidad"]
+  columns: ["nombre", "municipio", "provincia", "comunidad"]
 }));
 ```
 
 ```js
 const seleccion = view(Inputs.table(buscados, {
-  columns: ["nombre", "comunidad", "municipio", "titularidad", "urgencias"],
-  header: {nombre: "Hospital", comunidad: "Comunidad", municipio: "Municipio", titularidad: "Titularidad", urgencias: "Urgencias"},
+  columns: ["nombre", "provincia", "comunidad", "titularidad", "urgencias"],
+  header: {nombre: "Hospital", provincia: "Provincia", comunidad: "Comunidad", titularidad: "Titularidad", urgencias: "Urgencias"},
   required: false,
   rows: 13,
   width: {nombre: 300}
