@@ -113,8 +113,8 @@ td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:
   keywords: ["hospitales", "calidad asistencial", "INCLASNS", "CMBD", "sanidad", "España", "datos abiertos"],
 })}</script>`,
   footer: `Datos hospitalarios © OpenStreetMap (ODbL) · Límites © IGN (CC-BY 4.0) ·
-    Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011) · último dato 2024. ·
-    Información para orientar tus preguntas al médico, no un veredicto. No es consejo médico.<br>
+    Calidad: INCLASNS / CMBD, Ministerio de Sanidad (RD 1495/2011) · fechas por fuente (ver cada página). ·
+    Proyecto independiente, sin financiación ni patrocinio. Información para preguntar mejor a tu médico, no un veredicto. No es consejo médico.<br>
     <a href="/metodologia">Metodología</a> · <a href="/privacidad">Privacidad</a> ·
     <a href="/aviso-legal">Aviso legal</a> ·
     <a href="https://github.com/acuestamd/mapasalud-es">Código y datos (MIT)</a>`,

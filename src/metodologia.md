@@ -14,6 +14,18 @@ MapaSalud reúne datos públicos del sistema hospitalario español en un mapa,
 
 </div>
 
+## Qué mide cada cosa (y qué no)
+No todo lo que se llama "calidad" mide lo mismo. MapaSalud lo separa con honestidad:
+
+| Eje | Qué es | Fuente |
+|---|---|---|
+| **Acceso** | cuánto se espera (listas de espera quirúrgica) | SISLE-SNS |
+| **Resultado clínico** | mortalidad/seguridad intrahospitalaria — hoy **tasas crudas**, no ajustadas | INCLASNS / CMBD |
+| **Reputación** | prestigio/percepción por encuesta | rankings externos (Newsweek, Merco, IQVIA) |
+
+Las clasificaciones cerradas miden sobre todo **reputación**; aquí publicamos **acceso** y
+**resultado**, abiertos y trazables a su fuente. Son ejes distintos: no es "mejor o peor".
+
 ## Quién y por qué
 Lo mantengo yo, **Armando Cuesta, médico**. La sanidad pública española publica datos
 de calidad valiosos pero dispersos y poco legibles; no existe un equivalente abierto,
@@ -45,8 +57,17 @@ criterio clínico.
   i-CMBD (anonimizados, en trámite), junto con el ajuste por riesgo y los intervalos de
   confianza.
 
+## Usos que este proyecto NO respalda
+- Rankear comunidades "de mejor a peor" por **tasas crudas** (sin ajuste por riesgo).
+- Atribuir las diferencias a "buena o mala gestión" sin tener en cuenta casuística y edad.
+- Decidir **dónde tratarse** a partir de estas cifras: es información para preguntar mejor,
+  no una recomendación clínica.
+- Cualquier uso **comercial** o como arma política.
+
 ## Independencia y reproducibilidad
-Estrictamente **no comercial**, sin pagos por posicionamiento. Código bajo licencia MIT y
+Estrictamente **no comercial**, sin pagos por posicionamiento. **Sin financiación externa,
+sin patrocinio y sin relación comercial** con ningún centro, aseguradora o administración.
+Código bajo licencia MIT y
 *pipeline* de datos abierto y reproducible:
 [github.com/acuestamd/mapasalud-es](https://github.com/acuestamd/mapasalud-es). Detalle de
 fuentes y licencias en [`DATA-LICENSES.md`](https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md).

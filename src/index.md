@@ -96,7 +96,8 @@ display(resize(width => spainMap(width)));
 español en un mapa, **enlazando cada cifra a su fuente**. La capa de localización parte de
 OpenStreetMap; la de calidad, de INCLASNS (datos de base CMBD/i-CMBD). Los datos **por hospital
 y por especialidad** llegarán con la solicitud de microdatos CMBD (en trámite); de momento la
-calidad se muestra **por comunidad autónoma**. Sin valoraciones opacas, sin *scraping* de reseñas,
-estrictamente no comercial. **No es consejo médico.**
+calidad se muestra **por comunidad autónoma**. Medimos **acceso** (esperas) y **resultado**
+(mortalidad, hoy en tasas crudas), no reputación — [qué mide cada cosa](./metodologia). Sin
+valoraciones opacas, sin *scraping* de reseñas, estrictamente no comercial. **No es consejo médico.**
 
 </div>
