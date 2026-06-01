@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
@@ -25,7 +26,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: pip install pdfplumber pytest
+      - run: pip install -r requirements.txt
       - name: Fetch + normalize + assign CCAA + indicators + esperas
         run: |
           python3 scripts/fetch_osm_hospitals.py
@@ -46,3 +47,11 @@ jobs:
           else
             echo "No changes."
           fi
+      - name: Aviso si falla el refresco
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Fallo en el refresco de datos ($(date -u +%Y-%m-%d))" \
+            --body "El workflow 'Refresh data' ha fallado (posible cambio/caída de OSM, INCLASNS o SISLE). Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
