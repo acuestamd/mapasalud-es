@@ -1,6 +1,7 @@
 ---
 title: Hospitales de España
 toc: false
+head: '<link rel="canonical" href="https://mapasalud-es.vercel.app/"><meta property="og:url" content="https://mapasalud-es.vercel.app/">'
 ---
 
 <div class="hero-band">

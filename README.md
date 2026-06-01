@@ -25,7 +25,7 @@ closed and survey-based. Spain *does* publish the raw material under an open lic
   surgery, laparoscopic cholecystectomy) — choropleth + ranking, every figure linked to its
   source (datos de base CMBD/i-CMBD).
 - ✅ **By specialty**: a clinical-area filter on the quality map (Cardiología, Traumatología,
-  Neurología/ictus, Neumología, Cirugía, Endocrino/diabetes, Seguridad del paciente) that
+  Neurología/ictus, Neumología, Cirugía, Atención primaria/evitables, Seguridad del paciente) that
   narrows the indicators to that area.
 - ✅ **Per-hospital search** (`/buscar`): search all 1,025 hospitals; each is matched to its
   autonomous community by point-in-polygon, and its community's quality indicators are shown
@@ -65,13 +65,15 @@ npm run build    # build static site to dist/
 
 ## Roadmap
 
-1. Join the official **Catálogo Nacional de Hospitales** (registry of record).
-2. **INCLASNS** condition-specific in-hospital mortality by region (API + bulk export).
-3. **i-CMBD** risk-adjusted (GRD-APR) outcomes; submit the free CMBD microdata request.
-4. **SISLE** waiting times by specialty.
-5. Compare-by-specialty dashboard with confidence intervals and small-N suppression.
-6. Doctor **credential verification** search (link-out to CGCOM/REPS — never a ranking).
-7. Migrate the basemap to MapLibre GL + PMTiles once the ~8,131-municipio choropleth lands.
+Shipped: INCLASNS quality by region (+ clinical-area filter + time series), SISLE waiting times
+(+ per-community pages), hospital search, doctor credential verification (link-out), CCAA comparator,
+CSV / open data, deep-links and source-cited share cards.
+
+Next:
+1. **Per-hospital** outcomes (risk-adjusted, with confidence intervals) — pending the free **i-CMBD**
+   microdata request, joined via the **Catálogo Nacional de Hospitales / REGCESS** (CCN key).
+2. Own domain (mapasalud.es), press kit + citation/DOI, security headers, CI.
+3. MapLibre GL + PMTiles basemap once a per-municipio choropleth has real data.
 
 ## Disclaimer
 

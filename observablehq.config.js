@@ -8,7 +8,6 @@ const OG = "https://mapasalud-es.vercel.app/og.png";
 export default {
   root: "src",
   title: "MapaSalud",
-  dynamicPaths: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19"].map(c => `/esperas/${c}`),
   pages: [
     {name: "Hospitales", path: "/index"},
     {name: "Buscar hospital", path: "/buscar"},
@@ -26,8 +25,6 @@ export default {
 <meta property="og:title" content="MapaSalud — Hospitales de España">
 <meta property="og:description" content="${DESC}">
 <meta property="og:image" content="${OG}">
-<meta property="og:url" content="https://mapasalud-es.vercel.app/">
-<link rel="canonical" href="https://mapasalud-es.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MapaSalud — Hospitales de España">
 <meta name="twitter:description" content="${DESC}">
@@ -108,7 +105,7 @@ td.good { color:#1a7a3c; font-weight:600; } td.bad { color:#c0392b; font-weight:
   name: "MapaSalud — Hospitales de España",
   description: DESC,
   url: "https://mapasalud-es.vercel.app/",
-  license: "https://opensource.org/licenses/MIT",
+  license: "https://github.com/acuestamd/mapasalud-es/blob/main/DATA-LICENSES.md",
   isAccessibleForFree: true,
   inLanguage: "es",
   creator: { "@type": "Person", name: "Armando Cuesta" },

@@ -55,8 +55,8 @@ y no son la base de ningún número de este sitio.
   </div>
   <div class="card">
     <h2>SISLE — Listas de espera del SNS</h2>
-    <p class="muted">Tiempos de espera quirúrgicos y de consulta por CCAA (publicación semestral,
-    en PDF). <b>Integración pendiente</b> — de momento se enlaza la fuente.</p>
+    <p class="muted">Tiempos de espera quirúrgica por CCAA (publicación semestral, en PDF).
+    <b>Integrado</b> en <a href="./esperas">Listas de espera</a>; aquí enlazas la fuente oficial.</p>
     <a class="btn" href="https://www.sanidad.gob.es/estadEstudios/estadisticas/inforRecopilaciones/listaEspera.htm" target="_blank" rel="noopener">SISLE →</a>
   </div>
 </div>

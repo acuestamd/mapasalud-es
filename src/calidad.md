@@ -233,21 +233,20 @@ display((() => {
 display((() => {
   const sorted = [...ccaaEntries].sort((a, b) =>
     indicator.betterWhen === "lower" ? a[1] - b[1] : b[1] - a[1]);
-  const rows = sorted.map(([code, v], i) => html`<tr class=${code === ccaaSel ? "rowsel" : ""} style="cursor:pointer" onclick=${() => setCcaa(code)}>
-    <td style="text-align:right;color:var(--theme-foreground-muted)">${i + 1}</td>
+  const rows = sorted.map(([code, v]) => html`<tr class=${code === ccaaSel ? "rowsel" : ""} style="cursor:pointer" onclick=${() => setCcaa(code)}>
     <td>${ccaaName.get(code) ?? code}${LOW_N.has(code) ? html` <span class="lown">bajo N</span>` : ""}</td>
     <td style="text-align:right;font-variant-numeric:tabular-nums"><b>${fmtN(v)}</b></td>
-    <td style="width:90px" title="barra = mejor que la media regional"><span style="display:inline-block;height:10px;width:${Math.round(6 + 74 * goodFrac(v))}px;background:${colorScale(v)}"></span></td>
+    <td style="width:90px" title="distancia a la media regional"><span style="display:inline-block;height:10px;width:${Math.round(6 + 74 * goodFrac(v))}px;background:${colorScale(v)}"></span></td>
   </tr>`);
   return html`<table style="width:100%;border-collapse:collapse;font-size:13px">
     <thead><tr style="text-align:left;border-bottom:1px solid var(--theme-foreground-faint)">
-      <th></th><th>Comunidad autónoma</th><th style="text-align:right">Valor</th><th></th></tr></thead>
+      <th>Comunidad autónoma</th><th style="text-align:right">Valor</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
     <tfoot><tr style="border-top:1px solid var(--theme-foreground-faint)">
-      <td></td><td><b>España</b></td><td style="text-align:right"><b>${fmtN(national)}</b></td><td></td></tr></tfoot>
+      <td><b>España</b></td><td style="text-align:right"><b>${fmtN(national)}</b></td><td></td></tr></tfoot>
   </table>
   <div class="muted" style="margin-top:.5rem">${indicator.betterWhen === "lower"
-    ? "Menor es mejor." : "Mayor es mejor."} ${SEX_LABEL[sexo]}, ${anio}.</div>`;
+    ? "Menor es mejor." : "Mayor es mejor."} ${SEX_LABEL[sexo] ?? sexo}, ${anio} · ordenado por valor (no es un ranking de calidad).</div>`;
 })());
 ```
 </div>

@@ -47,10 +47,10 @@ const seleccion = view(Inputs.checkbox(ccaaAll, {label: "Comunidades", format: c
 ```js
 display((() => {
   const rows = seleccion.map(c => ({comunidad: c.name, valor: valsAll[c.code]})).filter(r => r.valor != null);
-  rows.push({comunidad: "España", valor: valsAll.ES});
+  if (rows.length < 1) return html`<div class="muted">Elige al menos una comunidad.</div>`;
+  if (valsAll.ES != null) rows.push({comunidad: "España", valor: valsAll.ES});
   const better = indicator.betterWhen;
   const sorted = [...rows].sort((a, b) => better === "lower" ? a.valor - b.valor : b.valor - a.valor);
-  if (rows.length < 2) return html`<div class="muted">Elige al menos una comunidad.</div>`;
   return html`<div class="card" style="padding:1rem">
     <div class="vizhead" style="margin-bottom:.3rem">${indicator.name} · ${SEX_LABEL[sexo] ?? sexo} · ${anio}</div>
     ${resize((width) => Plot.plot({
