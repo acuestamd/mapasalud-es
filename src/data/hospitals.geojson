@@ -3393,7 +3393,7 @@
     "type": "Point",
     "coordinates": [
      -3.549412,
-     40.364501
+     40.364498
     ]
    },
    "properties": {
@@ -10447,7 +10447,7 @@
     "name": "Hospital Comarcal de Medina del Campo",
     "city": null,
     "province": null,
-    "postcode": null,
+    "postcode": "47400",
     "operator": null,
     "operator_type": null,
     "beds": null,
