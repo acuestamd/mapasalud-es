@@ -4,7 +4,7 @@
   "title": "Spanish hospitals — locations (v0.1 seed)",
   "location_source": "OpenStreetMap contributors (ODbL)",
   "note": "Locations only. Quality metrics (i-CMBD/INCLASNS) and the authoritative Catalogo Nacional de Hospitales join are pending — see DATA-LICENSES.md.",
-  "count": 1025
+  "count": 1023
  },
  "features": [
   {
@@ -376,34 +376,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     2.078433,
-     41.490102
-    ]
-   },
-   "properties": {
-    "id": "way/125826128",
-    "name": "Asepeyo",
-    "city": null,
-    "province": null,
-    "postcode": null,
-    "operator": null,
-    "operator_type": null,
-    "beds": null,
-    "emergency": null,
-    "healthcare_speciality": null,
-    "website": null,
-    "source": "OpenStreetMap",
-    "ccaa": "09",
-    "ccaaName": "Cataluña/Catalunya",
-    "provincia": "08",
-    "provinciaName": "Barcelona"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -3.677119,
      40.436555
     ]
@@ -628,7 +600,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -2.953098,
+     -2.953155,
      43.261666
     ]
    },
@@ -853,7 +825,7 @@
     "type": "Point",
     "coordinates": [
      2.145603,
-     41.388943
+     41.388947
     ]
    },
    "properties": {
@@ -1293,6 +1265,34 @@
     "ccaaName": "Comunitat Valenciana",
     "provincia": "46",
     "provinciaName": "València/Valencia"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     2.078344,
+     41.48976
+    ]
+   },
+   "properties": {
+    "id": "way/125827317",
+    "name": "Centre de Prevenció i Rehabilitació Asepeyo",
+    "city": null,
+    "province": null,
+    "postcode": null,
+    "operator": null,
+    "operator_type": null,
+    "beds": null,
+    "emergency": null,
+    "healthcare_speciality": null,
+    "website": null,
+    "source": "OpenStreetMap",
+    "ccaa": "09",
+    "ccaaName": "Cataluña/Catalunya",
+    "provincia": "08",
+    "provinciaName": "Barcelona"
    }
   },
   {
@@ -2329,34 +2329,6 @@
     "ccaaName": "Andalucía",
     "provincia": "23",
     "provinciaName": "Jaén"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -16.727143,
-     28.118169
-    ]
-   },
-   "properties": {
-    "id": "way/170336089",
-    "name": "Centro de Salud Adeje",
-    "city": null,
-    "province": null,
-    "postcode": null,
-    "operator": null,
-    "operator_type": null,
-    "beds": null,
-    "emergency": "yes",
-    "healthcare_speciality": null,
-    "website": null,
-    "source": "OpenStreetMap",
-    "ccaa": "05",
-    "ccaaName": "Canarias",
-    "provincia": "38",
-    "provinciaName": "Santa Cruz de Tenerife"
    }
   },
   {
@@ -3792,8 +3764,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -5.337356,
-     36.179924
+     -5.337359,
+     36.179915
     ]
    },
    "properties": {
@@ -4002,34 +3974,6 @@
     "operator_type": null,
     "beds": null,
     "emergency": "no",
-    "healthcare_speciality": null,
-    "website": null,
-    "source": "OpenStreetMap",
-    "ccaa": "13",
-    "ccaaName": "Comunidad de Madrid",
-    "provincia": "28",
-    "provinciaName": "Madrid"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -3.637218,
-     40.547625
-    ]
-   },
-   "properties": {
-    "id": "way/297494475",
-    "name": "Centro de Salud Miraflores",
-    "city": null,
-    "province": null,
-    "postcode": null,
-    "operator": null,
-    "operator_type": null,
-    "beds": null,
-    "emergency": null,
     "healthcare_speciality": null,
     "website": null,
     "source": "OpenStreetMap",
@@ -5285,13 +5229,13 @@
     "name": "Centro Salud Corralejo",
     "city": null,
     "province": null,
-    "postcode": null,
+    "postcode": "35660",
     "operator": null,
     "operator_type": null,
     "beds": null,
     "emergency": null,
     "healthcare_speciality": null,
-    "website": null,
+    "website": "https://centrosdesalud.com.es/provincia-de-las-palmas/oliva-la/corralejo-avda-juan-carlos-i-n-28/",
     "source": "OpenStreetMap",
     "ccaa": "05",
     "ccaaName": "Canarias",
@@ -8020,6 +7964,34 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -1.041713,
+     39.766998
+    ]
+   },
+   "properties": {
+    "id": "node/13938846879",
+    "name": "Cruz Roja",
+    "city": null,
+    "province": null,
+    "postcode": null,
+    "operator": "Cruz Roja",
+    "operator_type": "ngo",
+    "beds": null,
+    "emergency": null,
+    "healthcare_speciality": null,
+    "website": null,
+    "source": "OpenStreetMap",
+    "ccaa": "10",
+    "ccaaName": "Comunitat Valenciana",
+    "provincia": "46",
+    "provinciaName": "València/Valencia"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -5.840397,
      43.365424
     ]
@@ -8057,7 +8029,7 @@
     "name": "Cruz Roja",
     "city": null,
     "province": null,
-    "postcode": null,
+    "postcode": "35660",
     "operator": "Cruz Roja",
     "operator_type": null,
     "beds": null,
@@ -8153,34 +8125,6 @@
     "ccaaName": "Aragón",
     "provincia": "50",
     "provinciaName": "Zaragoza"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -2.942233,
-     43.261228
-    ]
-   },
-   "properties": {
-    "id": "node/6572626995",
-    "name": "Cruz Roja",
-    "city": null,
-    "province": null,
-    "postcode": null,
-    "operator": "Cruz Roja",
-    "operator_type": null,
-    "beds": null,
-    "emergency": null,
-    "healthcare_speciality": null,
-    "website": null,
-    "source": "OpenStreetMap",
-    "ccaa": "16",
-    "ccaaName": "País Vasco/Euskadi",
-    "provincia": "48",
-    "provinciaName": "Bizkaia"
    }
   },
   {
@@ -8748,6 +8692,34 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -2.942085,
+     43.261158
+    ]
+   },
+   "properties": {
+    "id": "way/41586318",
+    "name": "Cruz Roja Victoria Eugenia",
+    "city": null,
+    "province": null,
+    "postcode": null,
+    "operator": "Cruz Roja",
+    "operator_type": "ngo",
+    "beds": null,
+    "emergency": null,
+    "healthcare_speciality": null,
+    "website": null,
+    "source": "OpenStreetMap",
+    "ccaa": "16",
+    "ccaaName": "País Vasco/Euskadi",
+    "provincia": "48",
+    "provinciaName": "Bizkaia"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -7.35628,
      43.660514
     ]
@@ -8950,7 +8922,7 @@
    },
    "properties": {
     "id": "node/11299533778",
-    "name": "Edificio Administración Y Mantenimiento Hospital",
+    "name": "Edificio Administración y Mantenimiento Hospital",
     "city": null,
     "province": null,
     "postcode": null,
@@ -10176,18 +10148,18 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     2.787017,
-     41.676185
+     2.786886,
+     41.676028
     ]
    },
    "properties": {
-    "id": "node/530106736",
-    "name": "Hospital Asil Sant Jaume",
+    "id": "way/42457376",
+    "name": "Hospital Asil de Sant Jaume",
     "city": null,
     "province": null,
     "postcode": null,
-    "operator": null,
-    "operator_type": null,
+    "operator": "Corporació de Salut del Maresme i la Selva",
+    "operator_type": "public",
     "beds": null,
     "emergency": null,
     "healthcare_speciality": null,
@@ -10680,8 +10652,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     2.142282,
-     41.401314
+     2.142269,
+     41.401313
     ]
    },
    "properties": {
@@ -11951,34 +11923,6 @@
     "province": null,
     "postcode": null,
     "operator": null,
-    "operator_type": "public",
-    "beds": null,
-    "emergency": "yes",
-    "healthcare_speciality": null,
-    "website": null,
-    "source": "OpenStreetMap",
-    "ccaa": "01",
-    "ccaaName": "Andalucía",
-    "provincia": "41",
-    "provinciaName": "Sevilla"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -5.78491,
-     37.175866
-    ]
-   },
-   "properties": {
-    "id": "way/106699114",
-    "name": "Hospital de Alta Resolución de Utrera",
-    "city": "Utrera",
-    "province": null,
-    "postcode": "41710",
-    "operator": "Servicio Andaluz de Salud",
     "operator_type": "public",
     "beds": null,
     "emergency": "yes",
@@ -16756,6 +16700,34 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -0.33678,
+     39.453483
+    ]
+   },
+   "properties": {
+    "id": "way/805114543",
+    "name": "Hospital IMSKE",
+    "city": "València",
+    "province": null,
+    "postcode": "46024",
+    "operator": "Ribera Salud",
+    "operator_type": "private",
+    "beds": null,
+    "emergency": null,
+    "healthcare_speciality": "trauma;physiatry;rheumatology",
+    "website": "https://www.imske.com",
+    "source": "OpenStreetMap",
+    "ccaa": "10",
+    "ccaaName": "Comunitat Valenciana",
+    "provincia": "46",
+    "provinciaName": "València/Valencia"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -3.782991,
      40.218157
     ]
@@ -17029,34 +17001,6 @@
     "ccaaName": "Comunitat Valenciana",
     "provincia": "03",
     "provinciaName": "Alacant/Alicante"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -0.33678,
-     39.453483
-    ]
-   },
-   "properties": {
-    "id": "way/805114543",
-    "name": "Hospital ISMKE",
-    "city": "València",
-    "province": null,
-    "postcode": "46024",
-    "operator": "Ribera Salud",
-    "operator_type": "private",
-    "beds": null,
-    "emergency": null,
-    "healthcare_speciality": "trauma;physiatry;rheumatology",
-    "website": "https://www.imske.com",
-    "source": "OpenStreetMap",
-    "ccaa": "10",
-    "ccaaName": "Comunitat Valenciana",
-    "provincia": "46",
-    "provinciaName": "València/Valencia"
    }
   },
   {
@@ -20984,7 +20928,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -6.368213,
+     -6.368208,
      39.465556
     ]
    },
@@ -22609,7 +22553,7 @@
     "type": "Point",
     "coordinates": [
      -15.445013,
-     28.120578
+     28.120574
     ]
    },
    "properties": {
@@ -24631,9 +24575,9 @@
    "properties": {
     "id": "way/403017939",
     "name": "Hospital Vithas Aguas Vivas",
-    "city": null,
+    "city": "Carcaixent",
     "province": null,
-    "postcode": null,
+    "postcode": "46740",
     "operator": null,
     "operator_type": null,
     "beds": null,
@@ -28544,7 +28488,7 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -3.572736,
+     -3.572737,
      37.164696
     ]
    },

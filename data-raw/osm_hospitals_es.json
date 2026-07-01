@@ -2,8 +2,8 @@
 "version": 0.6,
 "generator": "Overpass API 0.7.62.11 87bfad18",
 "osm3s": {
-"timestamp_osm_base": "2026-06-01T14:38:45Z",
-"timestamp_areas_base": "2026-06-01T05:33:30Z",
+"timestamp_osm_base": "2026-07-01T05:52:15Z",
+"timestamp_areas_base": "2026-05-12T07:36:16Z",
 "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
 },
 "elements": [
@@ -120,20 +120,6 @@
 },
 {
 "type": "node",
-"id": 530106736,
-"lat": 41.6761848,
-"lon": 2.7870169,
-"tags": {
-"amenity": "hospital",
-"name": "Hospital Asil Sant Jaume",
-"name:ca": "Hospital Asil de Sant Jaume",
-"wheelchair": "yes",
-"wikidata": "Q11926097",
-"wikipedia": "ca:Hospital Asil de Sant Jaume"
-}
-},
-{
-"type": "node",
 "id": 582735935,
 "lat": 28.1789636,
 "lon": -17.265757,
@@ -150,6 +136,7 @@
 "lon": -3.6364048,
 "tags": {
 "amenity": "hospital",
+"check_date": "2026-06-15",
 "healthcare": "hospital",
 "name": "Centro de especialidades Emigrantes",
 "wheelchair": "yes"
@@ -572,7 +559,7 @@
 "name": "Zumarragako Ospitalea",
 "name:eu": "Zumarragako Ospitalea",
 "network": "Mendebalde",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -893,7 +880,11 @@
 "lat": 28.7369996,
 "lon": -13.8695691,
 "tags": {
+"addr:housenumber": "10",
+"addr:postcode": "35660",
+"addr:street": "Calle Crucero Baleares",
 "amenity": "hospital",
+"check_date": "2026-06-30",
 "healthcare": "hospital",
 "name": "Cruz Roja",
 "operator": "Cruz Roja",
@@ -1565,9 +1556,17 @@
 "lat": 28.7390985,
 "lon": -13.8714088,
 "tags": {
+"addr:housenumber": "28",
+"addr:postcode": "35660",
+"addr:street": "Avenida Juan Carlos I",
 "amenity": "hospital",
+"check_date": "2026-06-09",
+"check_date:opening_hours": "2026-06-09",
 "healthcare": "hospital",
-"name": "Centro Salud Corralejo"
+"name": "Centro Salud Corralejo",
+"opening_hours": "24/7",
+"phone": "+34 928 535 969",
+"website": "https://centrosdesalud.com.es/provincia-de-las-palmas/oliva-la/corralejo-avda-juan-carlos-i-n-28/"
 }
 },
 {
@@ -1632,23 +1631,6 @@
 "healthcare:speciality": "general",
 "name": "Centro médico",
 "operator": "SESCAM"
-}
-},
-{
-"type": "node",
-"id": 6572626995,
-"lat": 43.261228,
-"lon": -2.9422335,
-"tags": {
-"amenity": "hospital",
-"brand": "Cruz Roja",
-"brand:wikidata": "Q7178",
-"brand:wikipedia": "es:Cruz Roja",
-"healthcare": "hospital",
-"name": "Cruz Roja",
-"operator": "Cruz Roja",
-"operator:wikidata": "Q7178",
-"wheelchair": "yes"
 }
 },
 {
@@ -2190,6 +2172,7 @@
 "tags": {
 "amenity": "hospital",
 "check_date": "2024-10-17",
+"healthcare": "hospital",
 "name": "Asisa"
 }
 },
@@ -2306,7 +2289,7 @@
 "amenity": "hospital",
 "check_date": "2023-10-30",
 "healthcare": "hospital",
-"name": "Edificio Administración Y Mantenimiento Hospital"
+"name": "Edificio Administración y Mantenimiento Hospital"
 }
 },
 {
@@ -2408,7 +2391,7 @@
 "name:eu": "Erandioko Eguneko Ospitalea",
 "network": "Bizkaiko Osasun Mentaleko Sarea",
 "nohousenumber": "yes",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 09:30-16:30",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -2545,7 +2528,7 @@
 "name:es": "Hospital de Día de Uribe",
 "name:eu": "Uribeko Eguneko Ospitalea",
 "network": "Bizkaiko Osasun Mentaleko Sarea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 08:00-15:00",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -2573,7 +2556,7 @@
 "name:es": "Hospital de Día de Uribe-Las Arenas",
 "name:eu": "Uribe-Areetako Eguneko Ospitalea",
 "network": "Bizkaiko Osasun Mentaleko Sarea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 08:00-15:00",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -2601,7 +2584,7 @@
 "name:es": "Hospital de Día de Adicciones de Manuene",
 "name:eu": "Manueneko Eguneko Ospitalea - Adikzioak",
 "network": "Bizkaiko Osasun Mentaleko Sarea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours:note": "astelehenetik ostiralera 09:00etatik 20:00etara",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -2705,6 +2688,7 @@
 "lon": 2.173848,
 "tags": {
 "amenity": "hospital",
+"healthcare": "hospital",
 "name": "Hospital de Nens de Barcelona"
 }
 },
@@ -2994,6 +2978,42 @@
 }
 },
 {
+"type": "node",
+"id": 13912060201,
+"lat": 36.5938772,
+"lon": -4.5344141,
+"tags": {
+"amenity": "hospital"
+}
+},
+{
+"type": "node",
+"id": 13938846879,
+"lat": 39.7669977,
+"lon": -1.0417129,
+"tags": {
+"amenity": "hospital",
+"healthcare": "hospital",
+"name": "Cruz Roja",
+"operator": "Cruz Roja",
+"operator:type": "ngo",
+"operator:wikidata": "Q7178"
+}
+},
+{
+"type": "node",
+"id": 13969453778,
+"lat": 43.538349,
+"lon": -5.6546701,
+"tags": {
+"amenity": "hospital",
+"healthcare": "hospital",
+"operator": "Cruz Roja",
+"operator:type": "ngo",
+"operator:wikidata": "Q7178"
+}
+},
+{
 "type": "relation",
 "id": 916023,
 "center": {
@@ -3234,7 +3254,7 @@
 "name:es": "Hospital de Bidasoa",
 "name:eu": "Bidasoko Ospitalea",
 "network": "Bidasoko Ospitalea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -3564,6 +3584,7 @@
 "network:short": "SERGAS",
 "network:wikidata": "Q3393183",
 "operator": "Servizo Galego de Saúde",
+"operator:short": "SERGAS",
 "operator:type": "public",
 "operator:wikidata": "Q3393183",
 "type": "multipolygon",
@@ -3807,7 +3828,7 @@
 "healthcare": "hospital",
 "name": "Mendaroko Ospitalea",
 "name:eu": "Mendaroko Ospitalea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -4132,7 +4153,7 @@
 "name:eu": "Txagorritxuko ospitalea",
 "network": "Araba/Álava",
 "nohousenumber": "yes",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "official_name:es": "Hospital Universitario de Araba - sede Txagorritxu",
 "official_name:eu": "Arabako Unibertsitate Ospitalea - Txagorritxuko egoitza",
 "operator": "Osakidetza",
@@ -5021,7 +5042,7 @@
 "name:es": "Hospital de Santiago",
 "name:eu": "Santiagoko ospitalea",
 "network": "Araba/Álava",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "official_name:es": "Hospital Universitario de Araba - sede Santiago",
 "official_name:eu": "Arabako Unibertsitate Ospitalea - Santiago egoitza",
 "operator": "Osakidetza",
@@ -5176,7 +5197,7 @@
 "name:es": "Hospital Universitario de Donostia",
 "name:eu": "Donostiako Unibertsitate Ospitalea",
 "network": "Mendebalde",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -5385,6 +5406,7 @@
 "addr:postcode": "30011",
 "addr:street": "Calle Miguel Hernández",
 "amenity": "hospital",
+"healthcare": "hospital",
 "name": "Hospital Quirón Murcia",
 "operator": "Quirón",
 "phone": "+34 968 36 50 00",
@@ -5983,7 +6005,7 @@
 "name:es": "Hospital Santa Marina",
 "name:eu": "Santa Marina Ospitalea",
 "network": "Bilbo-Basurtuko ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -6026,6 +6048,26 @@
 },
 {
 "type": "way",
+"id": 41586318,
+"center": {
+"lat": 43.2611579,
+"lon": -2.9420848
+},
+"tags": {
+"amenity": "hospital",
+"building": "yes",
+"healthcare": "hospital",
+"name": "Cruz Roja Victoria Eugenia",
+"name:es": "Cruz Roja Victoria Eugenia",
+"name:eu": "Gurutze Gorria Victoria Eugenia",
+"operator": "Cruz Roja",
+"operator:type": "ngo",
+"operator:wikidata": "Q7178",
+"wheelchair": "yes"
+}
+},
+{
+"type": "way",
 "id": 42134250,
 "center": {
 "lat": 39.9840763,
@@ -6039,6 +6081,26 @@
 "name:es": "Hospital Provincial de Castellón",
 "operator": "Consorci Hospitalari Provincial de Castelló",
 "website": "https://www.hospitalprovincial.es"
+}
+},
+{
+"type": "way",
+"id": 42457376,
+"center": {
+"lat": 41.6760276,
+"lon": 2.786886
+},
+"tags": {
+"amenity": "hospital",
+"building": "hospital",
+"historic": "building",
+"name": "Hospital Asil de Sant Jaume",
+"name:ca": "Hospital Asil de Sant Jaume",
+"operator": "Corporació de Salut del Maresme i la Selva",
+"operator:type": "public",
+"operator:wikidata": "Q140045510",
+"wheelchair": "yes",
+"wikidata": "Q11926097"
 }
 },
 {
@@ -6060,7 +6122,7 @@
 "name:es": "Hospital de Górliz",
 "name:eu": "Gorlizko Ospitalea",
 "network": "Hospital de Gorliz",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -6242,7 +6304,7 @@
 "id": 48625800,
 "center": {
 "lat": 39.4655559,
-"lon": -6.368213
+"lon": -6.3682081
 },
 "tags": {
 "addr:postcode": "10003",
@@ -6343,7 +6405,7 @@
 "name:es": "Hospital San Eloy",
 "name:eu": "San Eloy Ospitalea",
 "network": "Barakaldo-Sestaoko ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -6547,7 +6609,7 @@
 "id": 59267419,
 "center": {
 "lat": 43.2616664,
-"lon": -2.9530983
+"lon": -2.9531545
 },
 "tags": {
 "addr:city": "BILBAO",
@@ -6561,7 +6623,7 @@
 "name:es": "Hospital Universitario de Basurto",
 "name:eu": "Basurtuko Unibertsitate Ospitalea",
 "network": "Bilbo-Basurtuko ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -7174,6 +7236,7 @@
 "amenity": "hospital",
 "emergency": "yes",
 "healthcare": "hospital",
+"internet_access": "wlan",
 "name": "Hospital de Majadahonda Fremap",
 "opening_hours": "24/7",
 "operator": "FREMAP",
@@ -7456,29 +7519,6 @@
 "healthcare": "hospital",
 "name": "Hospital de la Venerable Orden Tercera de San Francisco",
 "website": "https://www.hospitalvot.org/"
-}
-},
-{
-"type": "way",
-"id": 106699114,
-"center": {
-"lat": 37.175866,
-"lon": -5.7849096
-},
-"tags": {
-"addr:city": "Utrera",
-"addr:postcode": "41710",
-"addr:street": "Avenida Brigadas Internacionales",
-"amenity": "hospital",
-"email": "informacion.epsbg.sspa@juntadeandalucia.es",
-"emergency": "yes",
-"healthcare": "hospital",
-"name": "Hospital de Alta Resolución de Utrera",
-"nohousenumber": "yes",
-"operator": "Servicio Andaluz de Salud",
-"operator:type": "public",
-"phone": "+34 955 83 90 01",
-"wikidata": "Q87762523"
 }
 },
 {
@@ -7876,15 +7916,16 @@
 },
 {
 "type": "way",
-"id": 125826128,
+"id": 125827317,
 "center": {
-"lat": 41.4901025,
-"lon": 2.0784329
+"lat": 41.48976,
+"lon": 2.0783444
 },
 "tags": {
 "amenity": "hospital",
+"check_date": "2023-09-28",
 "healthcare": "hospital",
-"name": "Asepeyo"
+"name": "Centre de Prevenció i Rehabilitació Asepeyo"
 }
 },
 {
@@ -8062,7 +8103,7 @@
 "name:es": "Hospital Universitario de Galdakao-Usansolo",
 "name:eu": "Galdakao-Usansoloko Ospitalea",
 "network": "Barrualde-Galdakaoko ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -8219,7 +8260,7 @@
 "name:es": "Hospital Universitario de Cruces",
 "name:eu": "Gurutzetako Unibertsitate Ospitalea",
 "network": "Ezkerralde-Enkarterri-Gurutzetako ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -8837,6 +8878,7 @@
 "tags": {
 "amenity": "hospital",
 "emergency": "yes",
+"healthcare": "hospital",
 "name": "Hospital de Hellín",
 "operator": "SESCAM",
 "wikidata": "Q29559520",
@@ -9113,21 +9155,6 @@
 "building": "yes",
 "emergency": "yes",
 "name": "Clínica Asepeyo"
-}
-},
-{
-"type": "way",
-"id": 170336089,
-"center": {
-"lat": 28.1181689,
-"lon": -16.7271429
-},
-"tags": {
-"amenity": "hospital",
-"building": "yes",
-"emergency": "yes",
-"healthcare": "hospital",
-"name": "Centro de Salud Adeje"
 }
 },
 {
@@ -9691,7 +9718,7 @@
 "name:es": "Hospital de Bermeo",
 "name:eu": "Bermeoko Ospitalea",
 "network": "Bizkaiko Osasun Mentaleko Sarea",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 08:00-15:00",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -10919,7 +10946,7 @@
 "type": "way",
 "id": 237094321,
 "center": {
-"lat": 28.1205777,
+"lat": 28.120574,
 "lon": -15.4450127
 },
 "tags": {
@@ -11225,7 +11252,7 @@
 "name:es": "Hospital Comarcal Del Alto Deba",
 "name:eu": "Debagoieneko Ospitalea",
 "network": "OSI Alto Deba",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -12067,19 +12094,6 @@
 },
 {
 "type": "way",
-"id": 297494475,
-"center": {
-"lat": 40.5476252,
-"lon": -3.6372184
-},
-"tags": {
-"amenity": "hospital",
-"healthcare": "hospital",
-"name": "Centro de Salud Miraflores"
-}
-},
-{
-"type": "way",
 "id": 297600844,
 "center": {
 "lat": 43.3442694,
@@ -12784,7 +12798,7 @@
 "name:es": "Hospital de Gernika-Lumo",
 "name:eu": "Gernika-Lumoko Ospitalea",
 "network": "OSI Barrualde-Galdakao",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 08:00-15:00",
 "operator": "Osakidetza",
 "operator:type": "public",
@@ -13677,6 +13691,10 @@
 "lon": -0.3549545
 },
 "tags": {
+"addr:city": "Carcaixent",
+"addr:housenumber": "Km 12",
+"addr:postcode": "46740",
+"addr:street": "Carretera Alzira–Tavernes de Valldigna",
 "amenity": "hospital",
 "healthcare": "hospital",
 "name": "Hospital Vithas Aguas Vivas",
@@ -13887,8 +13905,8 @@
 "type": "way",
 "id": 424498420,
 "center": {
-"lat": 41.401314,
-"lon": 2.1422817
+"lat": 41.4013125,
+"lon": 2.1422688
 },
 "tags": {
 "addr:street": "Carrer de Plató",
@@ -14688,8 +14706,8 @@
 "type": "way",
 "id": 532932977,
 "center": {
-"lat": 37.1646963,
-"lon": -3.5727364
+"lat": 37.1646961,
+"lon": -3.5727374
 },
 "tags": {
 "addr:housenumber": "6",
@@ -15018,7 +15036,7 @@
 "name:es": "Hospital Psiquiátrico de Álava",
 "name:eu": "Arabako Ospitale Psikiatrikoa",
 "network": "Araba/Álava",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours:note": "24 ordu",
 "operator": "Osakidetza",
 "operator:type": "government",
@@ -15330,7 +15348,7 @@
 "type": "way",
 "id": 619973212,
 "center": {
-"lat": 41.3889427,
+"lat": 41.3889465,
 "lon": 2.1456033
 },
 "tags": {
@@ -15815,7 +15833,7 @@
 "name:es": "Hospital de Leza",
 "name:eu": "Lezako Ospitalea",
 "network": "Araba/Álava",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "opening_hours": "Mo-Fr 08:00-15:00",
 "operator": "Osakidetza",
 "operator:type": "government",
@@ -16772,7 +16790,7 @@
 "building": "hospital",
 "healthcare": "hospital",
 "healthcare:speciality": "trauma;physiatry;rheumatology",
-"name": "Hospital ISMKE",
+"name": "Hospital IMSKE",
 "operator": "Ribera Salud",
 "operator:type": "private",
 "phone": "+34 963 69 00 00",
@@ -17528,6 +17546,7 @@
 "addr:postcode": "43204",
 "addr:street": "Camí de Tarragona",
 "amenity": "hospital",
+"building": "hospital",
 "emergency": "no",
 "fixme": "Es tracta d'un Centre Sociosanitari (no se si l'etiquetatge és realment aquest)",
 "healthcare": "hospital",
@@ -18502,8 +18521,8 @@
 "type": "way",
 "id": 1232535958,
 "center": {
-"lat": 36.1799239,
-"lon": -5.3373562
+"lat": 36.179915,
+"lon": -5.3373595
 },
 "tags": {
 "addr:city": "La Línea de la Concepción",
@@ -18874,7 +18893,7 @@
 "name:es": "Hospital de Eibar",
 "name:eu": "Eibarko Ospitalea",
 "network": "Debabarreneko ESI",
-"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu <a href=\"https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu/\">hemen</a>ea zein EAG duzun hurbilen",
+"note": "osasun-zentroaren ordutegitik kanpo eta premiaz artatu beharreko kasu arinetarako, begiratu https://www.osakidetza.euskadi.eus/informazioa/etengabeko-arretako-guneak-eag/ab84-oskcon/eu",
 "operator": "Osakidetza",
 "operator:type": "public",
 "operator:wikidata": "Q3822645",
@@ -19046,7 +19065,7 @@
 "id": 1363824297,
 "center": {
 "lat": 36.166193,
-"lon": -5.3479162
+"lon": -5.3479159
 },
 "tags": {
 "addr:city": "La Línea de la Concepción",
@@ -19803,6 +19822,18 @@
 "amenity": "hospital",
 "healthcare": "hospital",
 "healthcare:speciality": "general"
+}
+},
+{
+"type": "way",
+"id": 1533874140,
+"center": {
+"lat": 37.1760371,
+"lon": -5.7849145
+},
+"tags": {
+"amenity": "hospital",
+"healthcare": "hospital"
 }
 }
 ]
